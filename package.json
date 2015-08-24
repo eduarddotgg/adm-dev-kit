@@ -1,0 +1,12 @@
+{
+  "name": "adm-dev-kit-gulp",
+  "version": "0.0.1",
+  "author": "http://adm-designhouse.com",
+  "description": "adm dev kit gulp",
+  "devDependencies":{
+	"gulp-connect": "*",
+	"gulp-jade": "*",
+	"gulp-postcss": "*",
+	"gulp-watch": "*"
+  }
+ }
