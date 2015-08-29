@@ -1,14 +1,22 @@
 {
   "name": "adm-dev-kit-gulp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "http://adm-designhouse.com",
   "description": "adm dev kit gulp",
   "devDependencies": {
+    "autoprefixer": "*",
+    "cssnano":"*",
     "gulp": "*",
     "gulp-connect": "*",
     "gulp-jade": "*",
     "gulp-load-plugins": "^0.10.0",
     "gulp-postcss": "*",
-    "gulp-watch": "*"
+    "gulp-watch": "*",
+    "postcss-map": "*",
+    "postcss-media-minmax": "*",
+    "postcss-modular-scale": "*",
+    "postcss-pxtorem": "*",
+    "postcss-simple-grid": "*",
+    "precss":"*"
   }
 }
