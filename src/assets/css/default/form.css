@@ -1,0 +1,60 @@
+/*FORM DEFAULTS*/
+
+
+form {
+	font-family: map(font-family);
+	margin: map(margin);
+	width: 100%;
+}
+
+fieldset {
+	border: solid 1px map(divider-color);
+	border-radius: map(radius);
+	padding: 20px;
+	width: 100%;
+}
+
+label,
+legend {
+	font-size: map(font-size);
+	font-weight: bold;
+	margin: 0;
+}
+
+input {
+	background: #fff;
+	border-radius: map(radius);
+	border: solid 1px map(divider-color);
+	font-size: map(font-size);
+	font-weight: normal;
+	padding: 8px;
+	transition: all .1s ease-in-out;
+	width: 100%;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+	background: map(primary-color);
+	border: none;
+	border-radius: map(radius);
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	font-weight: bold;
+	padding: 8px 20px;
+	text-align: center;
+	width: auto;
+}
+
+textarea {
+	background: #fff;
+	border-radius: map(radius);
+	border: solid 1px map(divider-color);
+	font-size: map(font-size);
+	padding: 8px;
+	min-height: 150px;
+	resize: none;
+	transition: all .1s ease-in-out;
+	width: 100%;
+}

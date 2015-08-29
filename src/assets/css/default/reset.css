@@ -1,0 +1,46 @@
+/*RESET DEFAULTS*/
+
+
+:root {
+  --ms-bases: 1, 0.6;
+  --ms-ratios: 1.414;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+*,
+*:active,
+*:focus,
+*:hover {
+	outline: none;
+}
+
+html,
+body {
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+body {
+	background: map(body-primary-color);
+	color: map(type-primary-color);
+	font-family: map(font-family);
+	font-size: map(font-size);
+	font-weight: map(font-weight);
+	line-height: map(line-height);
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+}
