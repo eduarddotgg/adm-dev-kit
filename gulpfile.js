@@ -1,23 +1,25 @@
-var gulp          = require('gulp');
-var $             = require('gulp-load-plugins')();
-var watch         = require('gulp-watch');
-var args          = require('yargs').argv;
-var gulpif        = require('gulp-if');
-var del           = require('del');
-var pngquant      = require('imagemin-pngquant');
-var runSequence   = require('run-sequence');
+var gulp             = require('gulp');
+var $                = require('gulp-load-plugins')();
+var watch            = require('gulp-watch');
+var args             = require('yargs').argv;
+var gulpif           = require('gulp-if');
+var del              = require('del');
+var pngquant         = require('imagemin-pngquant');
+var runSequence      = require('run-sequence');
+var cmq              = require('gulp-combine-media-queries');
 
-var postcss       = require('gulp-postcss');
-var postcssImport = require('postcss-import');
-var nested        = require('postcss-nested');
-var precss        = require('precss');
-var autoprefixer  = require('autoprefixer');
-var map           = require('postcss-map');
-var minmax        = require('postcss-media-minmax');
-var mscale        = require('postcss-modular-scale');
-var pxtorem       = require('postcss-pxtorem');
-var grid          = require('postcss-simple-grid');
-var cssnano       = require('cssnano');
+var postcss          = require('gulp-postcss');
+var customProperties = require('postcss-custom-properties');
+var postcssImport    = require('postcss-import');
+var nested           = require('postcss-nested');
+var precss           = require('precss');
+var autoprefixer     = require('autoprefixer');
+var map              = require('postcss-map');
+var minmax           = require('postcss-media-minmax');
+var mscale           = require('postcss-modular-scale');
+var pxtorem          = require('postcss-pxtorem');
+var grid             = require('postcss-simple-grid');
+var cssnano          = require('cssnano');
 
 var isProduction  = args.env === 'production';
 
@@ -37,6 +39,7 @@ var processors = [
 	mscale,
 	grid,
 	pxtorem,
+	customProperties,
 	autoprefixer,
 	cssnano
 ];
@@ -79,6 +82,7 @@ gulp.task('js', function() {
 gulp.task('css', function(){
 	gulp.src(src + '/assets/css/*.css')
 	.pipe(postcss(processors))
+	.pipe(cmq())
 	.pipe(gulp.dest(root + 'assets/css'));
 });
 
@@ -105,7 +109,7 @@ gulp.task('zip', function () {
 
 
 // DEFAULT TASK
-gulp.task('default', ['connect', 'devbuild', 'watch']);
+gulp.task('default', ['devbuild', 'connect', 'watch']);
 
 
 // BUILD TASK
