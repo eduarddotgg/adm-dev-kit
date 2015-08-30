@@ -1,6 +1,11 @@
 var gulp          = require('gulp');
 var $             = require('gulp-load-plugins')();
 var watch         = require('gulp-watch');
+var args          = require('yargs').argv;
+var gulpif        = require('gulp-if');
+var del           = require('del');
+var pngquant      = require('imagemin-pngquant');
+var runSequence   = require('run-sequence');
 
 var postcss       = require('gulp-postcss');
 var postcssImport = require('postcss-import');
@@ -14,6 +19,7 @@ var pxtorem       = require('postcss-pxtorem');
 var grid          = require('postcss-simple-grid');
 var cssnano       = require('cssnano');
 
+var isProduction  = args.env === 'production';
 
 var src = './src';
 var root = './webroot/';
@@ -36,6 +42,12 @@ var processors = [
 ];
 
 
+// CLEAN
+gulp.task('clean', function (cb) {
+	del([root + '*'], cb);
+});
+
+// SIMPLE HTML SERVER
 gulp.task('connect', function(){
 	$.connect.server({
 		root: root,
@@ -43,24 +55,73 @@ gulp.task('connect', function(){
 	});
 });
 
+
+// JADE TO HTML
 gulp.task('jade', function(){
 	gulp.src(src + '/*.jade')
 	.pipe($.jade())
 	.pipe(gulp.dest(root))
 });
 
-gulp.task('jadeWatch', function(){
-	gulp.watch([src + '/*.jade',], ['jade'])
+
+// JS
+gulp.task('js', function() {
+	gulp.src(src + '/assets/js/*.js')
+	.pipe($.uglify())
+	.pipe($.rename({
+		extname: '.min.js'
+	}))
+	.pipe(gulp.dest(root + 'assets/js'));
 });
 
+
+// POSTCSS TO CSS
 gulp.task('css', function(){
 	gulp.src(src + '/assets/css/*.css')
 	.pipe(postcss(processors))
 	.pipe(gulp.dest(root + 'assets/css'));
 });
 
-gulp.task('cssWatch', function(){
-	gulp.watch([src + '/assets/css/*.css'], ['css'])
+
+// IMAGES COMPRESSOR
+gulp.task('img', function(){
+	gulp.src(src + '/assets/img/*')
+	.pipe($.imagemin({
+		progressive: true,
+		svgoPlugins: [{removeViewBox: false}],
+		use: [pngquant()]
+	}))
+	.pipe(gulp.dest(root + '/assets/img'));
 });
 
-gulp.task('default', ['connect']);
+
+//ZIP
+gulp.task('zip', function () {
+	gulp.src(src + '/**/**/**/*')
+		.pipe($.zip('build.zip'))
+		.pipe($.versionTag(__dirname,'./package.json'))
+		.pipe(gulp.dest('./'));
+});
+
+
+// DEFAULT TASK
+gulp.task('default', ['connect', 'devbuild', 'watch']);
+
+
+// BUILD TASK
+gulp.task('build', function(callback) {
+	runSequence('clean', ['jade', 'js', 'css', 'img'], 'zip', callback);
+});
+
+gulp.task('devbuild', function() {
+	runSequence (['jade', 'js', 'css', 'img']);
+});
+
+
+// WATCH TASK
+gulp.task('watch', function() {
+	gulp.watch([src + '/*.jade',], ['jade'])
+	gulp.watch([src + '/assets/js/**/**/**/*.js'], ['js'])
+	gulp.watch([src + '/assets/css/**/**/**/*.css'], ['css'])
+	gulp.watch([src + '/assets/img/**/**/**/*'], ['img'])
+});

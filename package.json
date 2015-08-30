@@ -5,18 +5,28 @@
   "description": "adm dev kit gulp",
   "devDependencies": {
     "autoprefixer": "*",
-    "cssnano":"*",
+    "cssnano": "*",
+    "del": "*",
     "gulp": "*",
     "gulp-connect": "*",
+    "gulp-if": "*",
+    "gulp-imagemin": "*",
     "gulp-jade": "*",
-    "gulp-load-plugins": "^0.10.0",
+    "gulp-load-plugins": "*",
     "gulp-postcss": "*",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
+    "gulp-uglify": "*",
     "gulp-watch": "*",
+    "gulp-zip": "*",
+    "imagemin-pngquant": "*",
     "postcss-map": "*",
     "postcss-media-minmax": "*",
     "postcss-modular-scale": "*",
     "postcss-pxtorem": "*",
     "postcss-simple-grid": "*",
-    "precss":"*"
+    "precss":"*",
+    "run-sequence": "*",
+    "yargs":"*"
   }
 }
