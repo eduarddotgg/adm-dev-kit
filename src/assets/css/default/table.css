@@ -1,0 +1,44 @@
+/*TABLE DEFAULTS*/
+
+
+table {
+	background: #fff;
+	border: solid 1px map(divider-color);
+	border-collapse: collapse;
+	font-family: map(font-family);
+	font-size: map(font-size);
+	line-height: map(line-height);
+	margin: 0;
+	width: 100%;
+}
+
+caption {
+	background: #fff;
+	font-weight: bold;
+	padding: 10px 5px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+thead, tfoot {
+	background: map(body-secondary-color);
+	font-weight:  bold;
+}
+
+tbody tr {
+	&:nth-child(even){ background: map(table-row-even-color); }
+	&:nth-child(odd){ background: map(table-row-odd-color); }
+}
+
+tr {
+	border: solid 1px map(divider-color);
+}
+
+th,td {
+	padding: 10px 20px;
+	text-align: left;
+}
+
+td {
+	vertical-align: top;
+}

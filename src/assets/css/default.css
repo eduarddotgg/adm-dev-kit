@@ -1,3 +1,6 @@
-body{
-	background: red;
-}
+@import "default/reset.css";
+@import "default/clearfix.css";
+@import "default/type.css";
+@import "default/table.css";
+@import "default/form.css";
+@import "default/grid.css";

@@ -1,0 +1,13 @@
+/* CLEAR FIX DEFAULTS*/
+
+
+.clearfix {
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
