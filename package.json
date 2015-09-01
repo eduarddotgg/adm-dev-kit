@@ -1,6 +1,6 @@
 {
   "name": "adm-dev-kit-gulp",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "author": "http://adm-designhouse.com",
   "description": "adm dev kit gulp",
   "devDependencies": {
@@ -18,6 +18,7 @@
     "gulp-rename": "*",
     "gulp-replace": "*",
     "gulp-uglify": "*",
+    "gulp-version-tag": "*",
     "gulp-watch": "*",
     "gulp-zip": "*",
     "imagemin-pngquant": "*",
