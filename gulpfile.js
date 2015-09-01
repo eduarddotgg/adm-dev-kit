@@ -102,9 +102,9 @@ gulp.task('img', function(){
 //ZIP
 gulp.task('zip', function () {
 	gulp.src(src + '/**/**/**/*')
-		.pipe($.zip('build.zip'))
-		.pipe($.versionTag(__dirname,'./package.json'))
-		.pipe(gulp.dest('./'));
+	.pipe($.zip('build.zip'))
+	.pipe($.versionTag(__dirname,'./package.json'))
+	.pipe(gulp.dest('./'));
 });
 
 
