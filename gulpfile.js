@@ -6,7 +6,7 @@ var gulpif           = require('gulp-if');
 var del              = require('del');
 var pngquant         = require('imagemin-pngquant');
 var runSequence      = require('run-sequence');
-var cmq              = require('gulp-combine-media-queries');
+var cmq              = require('gulp-combine-mq');
 
 var postcss          = require('gulp-postcss');
 var postcssImport    = require('postcss-import');
@@ -40,7 +40,7 @@ var processors = [
 	pxtorem,
 	customProperties,
 	autoprefixer,
-	cssnano({discardComments: {removeAll: true}})
+	cssnano
 ];
 
 
@@ -53,7 +53,9 @@ gulp.task('clean', function (cb) {
 gulp.task('connect', function(){
 	$.connect.server({
 		root: root,
-		port: 8888
+		port: 8888,
+		host: 'adm-dev-kit',
+		livereload: true
 	});
 });
 
@@ -81,7 +83,7 @@ gulp.task('js', function() {
 gulp.task('css', function(){
 	gulp.src(src + '/assets/css/*.css')
 	.pipe(postcss(processors))
-	// .pipe(cmq())
+	.pipe(cmq())
 	.pipe(gulp.dest(root + 'assets/css'));
 });
 
@@ -124,7 +126,7 @@ gulp.task('devbuild', function() {
 
 // WATCH TASK
 gulp.task('watch', function() {
-	gulp.watch([src + '/*.jade',], ['jade'])
+	gulp.watch([src + '/**/**/**/*.jade',], ['jade'])
 	gulp.watch([src + '/assets/js/**/**/**/*.js'], ['js'])
 	gulp.watch([src + '/assets/css/**/**/**/*.css'], ['css'])
 	gulp.watch([src + '/assets/img/**/**/**/*'], ['img'])
