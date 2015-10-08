@@ -9,22 +9,21 @@ var runSequence      = require('run-sequence');
 var cmq              = require('gulp-combine-media-queries');
 
 var postcss          = require('gulp-postcss');
-var customProperties = require('postcss-custom-properties');
 var postcssImport    = require('postcss-import');
 var nested           = require('postcss-nested');
-var precss           = require('precss');
-var autoprefixer     = require('autoprefixer');
 var map              = require('postcss-map');
 var minmax           = require('postcss-media-minmax');
 var mscale           = require('postcss-modular-scale');
-var pxtorem          = require('postcss-pxtorem');
 var grid             = require('postcss-simple-grid');
+var pxtorem          = require('postcss-pxtorem');
+var customProperties = require('postcss-custom-properties');
+var autoprefixer     = require('autoprefixer');
 var cssnano          = require('cssnano');
 
 var isProduction  = args.env === 'production';
 
 var src = './src';
-var root = './webroot/';
+var root = './dist/';
 
 var cssMaps = {
 	basePath: (src + '/assets/css/'),
@@ -41,7 +40,7 @@ var processors = [
 	pxtorem,
 	customProperties,
 	autoprefixer,
-	cssnano
+	cssnano({discardComments: {removeAll: true}})
 ];
 
 
@@ -82,7 +81,7 @@ gulp.task('js', function() {
 gulp.task('css', function(){
 	gulp.src(src + '/assets/css/*.css')
 	.pipe(postcss(processors))
-	.pipe(cmq())
+	// .pipe(cmq())
 	.pipe(gulp.dest(root + 'assets/css'));
 });
 
@@ -90,6 +89,7 @@ gulp.task('css', function(){
 // IMAGES COMPRESSOR
 gulp.task('img', function(){
 	gulp.src(src + '/assets/img/*')
+	.pipe($.clipEmptyFiles())
 	.pipe($.imagemin({
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}],
