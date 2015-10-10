@@ -22,12 +22,12 @@ var cssnano          = require('cssnano');
 
 var isProduction  = args.env === 'production';
 
-var src = './src';
-var root = './dist/';
+var src = 'src';
+var root = 'dist/';
 
 var cssMaps = {
 	basePath: (src + '/assets/css/'),
-	maps: [ 'settings.yml' ]
+	maps: [ 'variables.yml' ]
 }
 
 var processors = [
