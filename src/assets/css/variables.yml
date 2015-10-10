@@ -25,10 +25,11 @@ xxlarge-only         : 'screen and (width >= 120.063em) and (width <= 9999999em)
 primary-color        : '#197bee'
 secondary-color      : '#197bee'
 
-type-primary-color   : '#555'
+type-primary-color   : '#333'
 type-secondary-color : '#b3b3b3'
 type-oposit-color    : '#fff'
-divider-color        : '#e7e7e7'
+divider-color        : '#d9d9d9'
+divider-darken-color : '#808080'
 
 table-row-even-color : '#f6f6f6'
 table-row-odd-color  : '#fff'
