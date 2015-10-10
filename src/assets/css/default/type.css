@@ -1,5 +1,5 @@
 /*TYPE DEFAULTS*/
- 
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: map(font-family);
 	font-weight: bold;
@@ -9,42 +9,42 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-size: ms(5)rem;
-	
+
 	@media map(medium) { font-size: ms(6)rem; }
 	@media map(large) { font-size: ms(7)rem; }
 }
 
 h2 {
 	font-size: ms(4)rem;
-	
+
 	@media map(medium) { font-size: ms(5)rem; }
 	@media map(large) { font-size: ms(6)rem; }
 }
 
 h3 {
 	font-size: ms(3)rem;
-	
+
 	@media map(medium) { font-size: ms(4)rem; }
 	@media map(large) { font-size: ms(5)rem; }
 }
 
 h4 {
 	font-size: ms(2)rem;
-	
+
 	@media map(medium) { font-size: ms(3)rem; }
 	@media map(large) { font-size: ms(4)rem; }
 }
 
 h5 {
 	font-size: ms(1)rem;
-	
+
 	@media map(medium) { font-size: ms(2)rem; }
 	@media map(large) { font-size: ms(3)rem; }
 }
 
 h6 {
 	font-size: ms(1)rem;
-	
+
 	@media map(medium) { font-size: ms(1.5)rem; }
 	@media map(large) { font-size: ms(2.5)rem; }
 }
@@ -60,9 +60,20 @@ p {
 	}
 }
 
+a {
+    color: map(primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+    color: map(type-primary-color);
+}
+
 small { font-size: ms(0.8)rem; }
 
-abbr, 
+abbr,
 acronym {
 	text-transform: uppercase;
 }
