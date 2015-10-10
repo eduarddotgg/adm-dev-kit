@@ -32,6 +32,10 @@ input {
 	width: 100%;
 }
 
+input:focus{
+	border-color: map(divider-darken-color)
+}
+
 button,
 input[type="button"],
 input[type="submit"] {
@@ -45,6 +49,13 @@ input[type="submit"] {
 	padding: 8px 20px;
 	text-align: center;
 	width: auto;
+}
+
+input[type="button"]:hover,
+input[type="button"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus{
+	background: map(type-primary-color);
 }
 
 textarea {
