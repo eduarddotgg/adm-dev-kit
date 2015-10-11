@@ -1,13 +1,30 @@
+// GULP PLUGINS
 var gulp             = require('gulp');
 var $                = require('gulp-load-plugins')();
+var changed          = require('gulp-changed');
 var watch            = require('gulp-watch');
-var args             = require('yargs').argv;
-var gulpif           = require('gulp-if');
-var del              = require('del');
+var gif              = require('gulp-if');
+var resources        = require('gulp-resources');
+var concat           = require('gulp-concat');
+var replace          = require('gulp-replace');
+var foreach          = require('gulp-foreach');
+var rename           = require('gulp-rename');
 var pngquant         = require('imagemin-pngquant');
-var runSequence      = require('run-sequence');
-var cmq              = require('gulp-combine-mq');
+var uglify           = require('gulp-uglify');
 
+
+var path             = require('path');
+var del              = require('del');
+var runSequence      = require('run-sequence');
+var args             = require('yargs').argv;
+
+
+// SRC AND DEST
+var src = 'src';
+var root = 'dist/';
+
+
+// POSTCSS PLUGINS
 var postcss          = require('gulp-postcss');
 var postcssImport    = require('postcss-import');
 var nested           = require('postcss-nested');
@@ -19,14 +36,11 @@ var pxtorem          = require('postcss-pxtorem');
 var customProperties = require('postcss-custom-properties');
 var autoprefixer     = require('autoprefixer');
 var cssnano          = require('cssnano');
+var query            = require("css-mqpacker")()
 
-var isProduction  = args.env === 'production';
-
-var src = 'src';
-var root = 'dist/';
 
 var cssMaps = {
-	basePath: (src + '/assets/css/'),
+	basePath: (src),
 	maps: [ 'variables.yml' ]
 }
 
@@ -37,11 +51,18 @@ var processors = [
 	minmax,
 	mscale,
 	grid,
-	pxtorem,
-	customProperties,
-	autoprefixer,
 	cssnano
 ];
+
+var postprocess = [
+	autoprefixer,
+	customProperties,
+	pxtorem,
+	query
+];
+
+
+var isProduction  = args.env === 'production';
 
 
 // CLEAN
@@ -60,38 +81,50 @@ gulp.task('connect', function(){
 });
 
 
-// JADE TO HTML
-gulp.task('jade', function(){
+// EXTRACT COMPONENTS
+gulp.task('components', function () {
 	gulp.src(src + '/*.jade')
-	.pipe($.jade())
-	.pipe(gulp.dest(root))
-});
-
-
-// JS
-gulp.task('js', function() {
-	gulp.src(src + '/assets/js/*.js')
-	.pipe($.uglify())
-	.pipe($.rename({
-		extname: '.min.js'
+	// .pipe(changed('./tmp'))
+	.pipe(foreach(function(stream, file){
+		
+		var name = path.basename(file.path);
+		
+		var cssName = name.replace(/\.[^.]*$/i, '.css')
+		var cssPath = 'assets/css/'
+		var cssLink = '<link rel="stylesheet" type="text/css" href="'+ cssPath + cssName +'"/>'
+		
+		var jsName = name.replace(/\.[^.]*$/i, '.min.js')
+		var jsPath = 'assets/js/'
+		var jsLink = '<script src="'+ jsPath + jsName +'"></script>'
+		
+		return stream
+		.pipe($.jade())
+		.pipe(resources())
+		
+		// JS
+		.pipe(gif('**/*.js', concat('assets/js/' + jsName)))
+		.pipe(gif('assets/js/*.js', uglify()))
+		
+		// CSS
+		.pipe(gif('**/*.css', postcss(processors)))
+		.pipe(gif('**/*.css', concat('assets/css/' + cssName)))
+		.pipe(gif('assets/css/**/*.css', postcss(postprocess)))
+		
+		// REPLACE
+		.pipe(replace(/<link href[^>]+?[ ]*>/g, ''))
+		.pipe(replace('img/', 'assets/img/'))
+		.pipe(replace('<css></css>', cssLink))
+		.pipe(replace('<js></js>', jsLink))
 	}))
-	.pipe(gulp.dest(root + 'assets/js'));
+    .pipe(gulp.dest(root));
 });
 
-
-// POSTCSS TO CSS
-gulp.task('css', function(){
-	gulp.src(src + '/assets/css/*.css')
-	.pipe(postcss(processors))
-	.pipe(cmq())
-	.pipe(gulp.dest(root + 'assets/css'));
-});
 
 
 // IMAGES COMPRESSOR
 gulp.task('img', function(){
-	gulp.src(src + '/assets/img/*')
-	.pipe($.clipEmptyFiles())
+	gulp.src([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'])
+	.pipe(rename({dirname: ''}))
 	.pipe($.imagemin({
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}],
@@ -116,18 +149,16 @@ gulp.task('default', ['devbuild', 'connect', 'watch']);
 
 // BUILD TASK
 gulp.task('build', function(callback) {
-	runSequence('clean', ['jade', 'js', 'css', 'img'], 'zip', callback);
+	runSequence('clean', ['components', 'img'], 'zip', callback);
 });
 
 gulp.task('devbuild', function() {
-	runSequence (['jade', 'js', 'css', 'img']);
+	runSequence (['components', 'img']);
 });
 
 
 // WATCH TASK
 gulp.task('watch', function() {
-	gulp.watch([src + '/**/**/**/*.jade',], ['jade'])
-	gulp.watch([src + '/assets/js/**/**/**/*.js'], ['js'])
-	gulp.watch([src + '/assets/css/**/**/**/*.css'], ['css'])
-	gulp.watch([src + '/assets/img/**/**/**/*'], ['img'])
+	gulp.watch([src + '/**/**/**/*.*'], ['components'])
+	gulp.watch([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'], ['img'])
 });

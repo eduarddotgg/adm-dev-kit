@@ -1,7 +1,10 @@
-extends ./layouts/main.jade
+extends ./_layouts/main.jade
 
 block title
 	title Home Page
 
-block mainContent
-	h1 Hello World!
+block content
+	.row
+		link(href="_global/global.css")
+		h1 Hello World!
+		include index/slider/slider.jade

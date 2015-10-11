@@ -1,0 +1,12 @@
+.slider{
+	background: map(primary-color);
+	display: block;
+	
+	@media map(medium) { 
+		background: red;
+	}
+	
+	@media map(large) { 
+		background: green;
+	}
+}
