@@ -75,7 +75,6 @@ gulp.task('connect', function(){
 	$.connect.server({
 		root: root,
 		port: 8888,
-		host: 'adm-dev-kit',
 		livereload: true
 	});
 });
