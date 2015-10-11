@@ -3,16 +3,9 @@
 ADM DEV KIT (Gulp) - modular static website starter kit (jade/postcss).  
 .  
 .  
-
-### Problem
-Lately Front-end is evolving really fast. New and better technologies, methodologies are developed every day. They give us new experience, new abilities, new ways to develop.
-But meanwhile we still need to make develop static websites. And unfortunatly not every new technologies and methodologies can fit in static website development for 100%.
-One of such methodologies is - modularity.  
-So the main problem is that modularity in static website development is not used for 100%. All HTML, JS, CSS files are stored separatly and maintained not the best way. 
-  
-### Solution
-So I decided to create modular static website starter kit. The main idea is to make project modular with independent components. So after some researches I have made a gulp task that can handle components.
-All components are independent. One component can contain html, js, css and image files which are stored in separate folders. Main file of any component is jade file which includes js, css, images. To compile component component's main jade file should be included to main file for example index.jade.
+.  
+.  
+.  
   
 ## Usage
 Clone/fork or just download repositry and than just run: 
