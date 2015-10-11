@@ -1,6 +1,6 @@
 # ADM DEV KIT (Gulp)
 <img align="right" width="57" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-main-logo.png">
-ADM DEV KIT (Gulp) - modular static website starter kit (jade/postcss).  
+ADM DEV KIT (Gulp) - component driven static website starter kit (Jade/ PostCSS).  
 .  
 .  
 .  
