@@ -18,7 +18,7 @@ Open in Your browser
 http://localhost:8888
 ```
 
-## Showacse
+## Example
 file structure
 ```
 src
