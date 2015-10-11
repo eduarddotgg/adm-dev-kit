@@ -1,14 +1,10 @@
-doctype html
-html
-	head
-		meta(charset="UTF-8")
-		meta(name="viewport", content="width=device-width, initial-scale=1")
+extends ./_layouts/main.jade
 
+block title
+	title Home Page
 
-	body
-		header
-
-		main
-			p test
-
-		footer
+block content
+	.row
+		link(href="_global/global.css")
+		h1 Hello World!
+		include index/text/text.jade
