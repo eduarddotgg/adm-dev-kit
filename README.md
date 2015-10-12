@@ -2,7 +2,7 @@
 <img align="right" width="77" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-main-logo.png">
 ADM DEV KIT (Gulp) - component driven static website starter kit (Jade/ PostCSS).  
 Keep Your project modular. Make components independent.  
-No need to include static files separatly. Just add you js, css, images to jade component. All static files will be compiled only if component is included into main file for example ```index.jade```.  
+No need to include static files separatly. Just add js, css, images to jade component. All static files will be compiled only if component is included into main file for example ```index.jade```.  
 PostCSS is used as a css pre- and  postprocessor. PostCSS gives ability to keep all variables in separate file like yml so all css files are independent.  
    
 ## Usage
