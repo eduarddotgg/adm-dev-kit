@@ -17,13 +17,29 @@ As a solution to that i would like to offer component driven development for sta
 <img align="right" width="1024" height="" title="Dev Kit Main Logo" src="http://adm-designhouse.com/adm-dev-kit--modular-dependencies.png">  
 Component driven development can make our dependencies handling much easier. You can keep all component's related JS and CSS dependencies in one place.
 
+## What is inside?
+- [Gulp](https://github.com/gulpjs/gulp) as task runner;
+- [Express](https://github.com/strongloop/express) for serving static files;
+- [Browser-Sync](https://github.com/BrowserSync/browser-sync) for sync browsing and browser refreshing;
+- [Jade](https://github.com/jadejs/jade) as template language;
+- [PostCSS](https://github.com/postcss/postcss) as pre/postprocessor for CSS;
+- Custom built Qr-Code UI for easy opening on mobile devices;
+- Basic css style for default html tags.
+
 ## Usage
-Clone/fork or just download repositry and than just run: 
+Clone/fork or just download repositry and install all node dependencies: 
 ```
 $ npm i
-$ npm start
 ```
-Open in Your browser
+Edit host name, port for Your own in package.json.
+Than run:
+```
+$ npm run
+```
+Open in Your browser:
 ```
 http://localhost:3000
 ```
+
+## TO DO
+- [ ] update Qr-Code UI
