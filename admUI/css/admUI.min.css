@@ -1,0 +1,221 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:300,400,700);
+.admUI *,
+.admUI-show * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.admUI {
+    background: rgba(15, 15, 15, .9);
+    color: #fff;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    height: auto;
+    left: 0;
+    line-height: 1.4;
+    opacity: 0;
+    padding: 40px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    -moz-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    z-index: 9999;
+}
+
+.admUI.show {
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.admUI .col {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.admUI .col.qr {
+    border-right: solid 1px rgba(255, 255, 255, .1);
+    display: none;
+}
+
+.admUI .qr-code-wrapper {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.admUI .qr-code-wrapper .qr-code {
+    padding: 20px 0;
+}
+
+.admUI .qr-code-wrapper .qr-code canvas {
+    background: #fff;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.admUI .qr-code-wrapper p {
+    text-align: center;
+}
+
+.admUI .col .links-block {
+    display: block;
+    margin: 0 0 40px;
+}
+
+.admUI .col .links-block h2 {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+.admUI .col .links-block ul {
+    list-style: none;
+}
+
+.admUI .col .links-block a {
+    color: #fff;
+}
+
+.admUI .col .links-block a:hover {
+    text-decoration: none;
+}
+
+.admUI .admUI-close-btn {
+    color: #fff;
+    bottom: 10px;
+    display: block;
+    left: 50%;
+    position: absolute;
+    text-indent: -99999px;
+    width: 48px;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.admUI .admUI-close-btn:before {
+    background: rgba(150, 150, 150, 1);
+    border-radius: 3px;
+    content: " ";
+    cursor: pointer;
+    display: block;
+    height: 6px;
+    right: 0;
+    top: 50%;
+    position: absolute;
+    width: 26px;
+    -moz-transform: rotate(12deg);
+    -webkit-transform: rotate(12deg);
+    transform: rotate(12deg);
+}
+
+.admUI .admUI-close-btn:after {
+    background: rgba(150, 150, 150, 1);
+    border-radius: 3px;
+    content: " ";
+    cursor: pointer;
+    display: block;
+    height: 6px;
+    left: 0;
+    top: 50%;
+    position: absolute;
+    width: 26px;
+    -moz-transform: rotate(-12deg);
+    -webkit-transform: rotate(-12deg);
+    transform: rotate(-12deg);
+}
+
+.admUI-show {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    padding: 0 0 20px;
+    top: 0;
+    width: 100%;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    z-index: 9999;
+}
+
+.admUI-show.hide {
+    display: none;
+}
+
+.admUI-show:hover {
+    opacity: 1;
+}
+
+.admUI-show .admUI-show-btn {
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 8px 20px;
+    text-indent: -999999px;
+    width: 88px;
+}
+
+.admUI-show .admUI-show-btn:before {
+    background: rgba(216, 216, 216, .8);
+    border-radius: 3px;
+    content: " ";
+    cursor: pointer;
+    display: block;
+    height: 6px;
+    left: 50%;
+    top: 50%;
+    margin: -12px 0 0 -24px;
+    position: absolute;
+    width: 48px;
+}
+
+@media (min-width: 640px) {
+    .admUI {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+    }
+    .admUI .col {
+        padding: 20px 50px;
+        width: 50%;
+    }
+    .admUI .col.qr {
+        display: block;
+    }
+    .admUI .qr-code-wrapper {
+        width: 60%;
+    }
+    .admUI .qr-code-wrapper .qr-code canvas {
+        padding: 20px;
+    }
+    .admUI-show {
+        opacity: 0;
+    }
+}
+
+@media (min-width: 960px) {
+    .admUI .qr-code-wrapper .qr-code canvas {
+        padding: 40px;
+    }
+}
+
+undefined

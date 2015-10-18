@@ -1,7 +1,7 @@
 // GULP PLUGINS
 var gulp             = require('gulp');
 var $                = require('gulp-load-plugins')();
-var changed          = require('gulp-changed');
+var server           = require('gulp-develop-server');
 var watch            = require('gulp-watch');
 var gif              = require('gulp-if');
 var resources        = require('gulp-resources');
@@ -14,7 +14,6 @@ var uglify           = require('gulp-uglify');
 
 
 var path             = require('path');
-var del              = require('del');
 var runSequence      = require('run-sequence');
 var args             = require('yargs').argv;
 
@@ -34,15 +33,16 @@ var mscale           = require('postcss-modular-scale');
 var grid             = require('postcss-simple-grid');
 var pxtorem          = require('postcss-pxtorem');
 var customProperties = require('postcss-custom-properties');
+var font             = require('postcss-font-magician');
 var autoprefixer     = require('autoprefixer');
 var cssnano          = require('cssnano');
-var query            = require("css-mqpacker")()
+var query            = require("css-mqpacker")();
 
 
 var cssMaps = {
 	basePath: (src),
 	maps: [ 'variables.yml' ]
-}
+};
 
 var processors = [
 	postcssImport,
@@ -51,50 +51,38 @@ var processors = [
 	minmax,
 	mscale,
 	grid,
-	cssnano
+	font
 ];
 
 var postprocess = [
 	autoprefixer,
 	customProperties,
 	pxtorem,
-	query
+	query,
+	cssnano
 ];
 
 
-var isProduction  = args.env === 'production';
-
-
-// CLEAN
-gulp.task('clean', function (cb) {
-	del([root + '*'], cb);
+// SERVER
+gulp.task('server:start', function() {
+    server.listen({path: './server.js'});
 });
-
-// SIMPLE HTML SERVER
-gulp.task('connect', function(){
-	$.connect.server({
-		root: root,
-		port: 8888,
-		livereload: true
-	});
-});
-
+		
 
 // EXTRACT COMPONENTS
 gulp.task('components', function () {
 	gulp.src(src + '/*.jade')
-	// .pipe(changed('./tmp'))
 	.pipe(foreach(function(stream, file){
 		
 		var name = path.basename(file.path);
 		
-		var cssName = name.replace(/\.[^.]*$/i, '.css')
-		var cssPath = 'assets/css/'
-		var cssLink = '<link rel="stylesheet" type="text/css" href="'+ cssPath + cssName +'"/>'
+		var cssName = name.replace(/\.[^.]*$/i, '.css');
+		var cssPath = 'assets/css/';
+		var cssLink = '<link rel="stylesheet" type="text/css" href="'+ cssPath + cssName +'"/>';
 		
-		var jsName = name.replace(/\.[^.]*$/i, '.min.js')
-		var jsPath = 'assets/js/'
-		var jsLink = '<script src="'+ jsPath + jsName +'"></script>'
+		var jsName = name.replace(/\.[^.]*$/i, '.min.js');
+		var jsPath = 'assets/js/';
+		var jsLink = '<script src="'+ jsPath + jsName +'"></script>';
 		
 		return stream
 		.pipe($.jade())
@@ -111,6 +99,7 @@ gulp.task('components', function () {
 		
 		// REPLACE
 		.pipe(replace(/<link href[^>]+?[ ]*>/g, ''))
+		.pipe(replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
 		.pipe(replace('img/', 'assets/img/'))
 		.pipe(replace('<css></css>', cssLink))
 		.pipe(replace('<js></js>', jsLink))
@@ -119,9 +108,15 @@ gulp.task('components', function () {
 });
 
 
+// IMAGES DEVELOPMENT
+gulp.task('img-dev', function(){
+	gulp.src([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'])
+	.pipe(rename({dirname: ''}))
+	.pipe(gulp.dest(root + '/assets/img'));
+});
 
-// IMAGES COMPRESSOR
-gulp.task('img', function(){
+// IMAGES COMPRESSOR PRODUCTION
+gulp.task('img-prod', function(){
 	gulp.src([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'])
 	.pipe(rename({dirname: ''}))
 	.pipe($.imagemin({
@@ -135,26 +130,26 @@ gulp.task('img', function(){
 
 //ZIP
 gulp.task('zip', function () {
-	gulp.src(src + '/**/**/**/*')
+	gulp.src(root + '/**/**/**/*')
 	.pipe($.zip('build.zip'))
-	.pipe($.versionTag(__dirname,'./package.json'))
 	.pipe(gulp.dest('./'));
 });
 
 
 // DEFAULT TASK
-gulp.task('default', ['devbuild', 'connect', 'watch']);
+gulp.task('default', function(callback) {
+	runSequence ('devbuild', ['watch'], 'server:start', callback);
+});
 
+// DEVELOPMENT TASK
+gulp.task('devbuild', function(callback) {
+	runSequence (['components', 'img-dev'], callback);
+});
 
 // BUILD TASK
 gulp.task('build', function(callback) {
-	runSequence('clean', ['components', 'img'], 'zip', callback);
+	runSequence(['components', 'img-prod'], 'zip', callback);
 });
-
-gulp.task('devbuild', function() {
-	runSequence (['components', 'img']);
-});
-
 
 // WATCH TASK
 gulp.task('watch', function() {

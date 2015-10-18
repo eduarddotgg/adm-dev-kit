@@ -1,5 +1,5 @@
 # MEDIA QUERIES
-small                : 'only screen'
+small                : 'screen and (width <= 40.063em)'
 small-down           : 'screen and (width <= 40em)'
 small-only           : 'screen and (width <= 40em)'
 

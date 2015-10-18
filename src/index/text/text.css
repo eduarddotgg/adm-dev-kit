@@ -1,9 +1,0 @@
-.text{
-	display: block;
-	padding: 20px;
-	width: 100%;
-
-	@media map(medium){
-		padding: 0;
-	}
-}

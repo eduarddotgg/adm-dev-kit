@@ -1,0 +1,8 @@
+.panel{
+	background: map(divider-color);
+	border-radius: 5px;
+	display: block;
+	padding: 10px;
+	margin: 0 0 20px;
+	width: 100%;
+}

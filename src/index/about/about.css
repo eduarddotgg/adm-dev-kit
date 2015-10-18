@@ -1,0 +1,11 @@
+.about{
+	padding: 20px 0;
+	
+	@media map(medium) { padding: 40px 0; }
+}
+
+.about--text{
+	font-size: 12px;
+	
+	@media map(medium) { font-size: 18px; }
+}
