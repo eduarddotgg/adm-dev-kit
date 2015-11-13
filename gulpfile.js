@@ -27,7 +27,6 @@ var imgFolder	     = '/' + assetsFolder + 'img/';
 var posthtmlBem      = require('posthtml-bem');
 
 // POSTCSS PLUGINS
-var postcss          = require('gulp-postcss');
 var postcssImport    = require('postcss-import');
 var nested           = require('postcss-nested');
 var postcssBem       = require('postcss-bem');
@@ -112,7 +111,7 @@ gulp.task('components', function(){
 			.pipe($.if(jsFolder + '*.js', $.uglify()))
 			
 			// CSS
-			.pipe($.if('**/*.css', postcss(processors)))
+			.pipe($.if('**/*.css', $.postcss(processors)))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
 			.pipe($.if('assets/css/**/*.css', postcss(postprocess)))
 			
