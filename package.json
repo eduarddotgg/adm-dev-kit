@@ -27,7 +27,7 @@
     "starter kit"
   ],
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "*",
     "browser-sync": "*",
     "css-mqpacker": "*",
