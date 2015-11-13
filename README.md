@@ -1,7 +1,7 @@
 # ADM DEV KIT
 <img align="right" width="77" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-main-logo.png">
 ADM DEV KIT (Gulp) - component driven static website starter kit.  
-Starting tool for component driven development using [Jade](https://github.com/jadejs/jade) and [PostCSS](https://github.com/postcss/postcss).
+Starting tool for component driven development using [Jade](https://github.com/jadejs/jade) + [PostHTML](https://github.com/posthtml/posthtml)-[BEM](https://github.com/rajdee/posthtml-bem) and [PostCSS](https://github.com/postcss/postcss).
 
 ## Problem.
 While developing static website all HTML, JS and CSS dependencies are stored in different places and included into different files.
@@ -18,7 +18,7 @@ Component driven development can make our dependencies handling much easier. You
 - [Express](https://github.com/strongloop/express) for serving static files;
 - [Browser-Sync](https://github.com/BrowserSync/browser-sync) for sync browsing and browser refreshing;
 - [Jade](https://github.com/jadejs/jade) as template language;
-- [PostHTML BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure;
+- [PostHTML-BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure;
 - [PostCSS](https://github.com/postcss/postcss) as main pre/postprocessor for CSS compiling;
 - Basic css style for default html tags;
 - Custom built Qr-Code UI for easy opening on mobile devices (Coming up).
