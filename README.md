@@ -19,7 +19,7 @@ Component driven development can make our dependencies handling much easier. You
 - [Browser-Sync](https://github.com/BrowserSync/browser-sync) for sync browsing and browser refreshing;
 - [Jade](https://github.com/jadejs/jade) as template language;
 - [PostHTML-BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure;
-- [PostCSS](https://github.com/postcss/postcss) as main pre/postprocessor for CSS compiling;
+- [PostCSS](https://github.com/postcss/postcss) as main pre/postprocessor for CSS;
 - Basic css style for default html tags;
 - Custom built Qr-Code UI for easy opening on mobile devices (Coming up).
 
