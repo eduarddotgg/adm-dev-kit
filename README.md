@@ -37,3 +37,94 @@ Open in Your browser:
 ```
 http://localhost:3000
 ```
+
+## Showcase
+#### Example of dev file structure:
+```
+webroot
+	|- _common (contains common/global CSS and JS)
+		|- common (CSS files for reseting style of default HTML tags)
+		   common-index.css (CSS file that contains only those common css styles that are only important/related for index.jade file)
+		|- header
+			|- img
+			   header.jade
+			   header.js
+			   header.css
+		|- footer
+			|- img
+			   footer.jade
+			   footer.js
+			   footer.css
+	|- _layouts (layouts for JADE templating)
+		main.jade (main template file)
+	|- index (contains all components used in index.jade file)
+		|- slider
+			|- img (images folder)
+			   slider.jade
+			   slider.js
+			   slider.css
+		|- news-box
+			|- img (images folder)
+			   news-box.jade
+			   news-box.js
+			   news-box.css
+	index.jade
+```
+  
+#### Example of markup:
+main.jade - lauout file
+```jade
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		block title
+			title Main Layout
+		//- CSS will be included here
+		css
+	body
+		block content
+		//- JS will be included here
+		js
+```
+
+index.jade
+```jade
+extends ./_layouts/main.jade
+
+block title
+	title ADM DEV KIT
+
+block content
+	link(href='_common/common-index.css')
+	include index/slider/slider.jade
+```
+
+index/slider/slider.jade
+```
+link(href='index/slider/slider.css')
+script(src='index/slider/slider.js')
+div(block='slider')
+	div(elem='item')
+		img(src='img/slide-img-1.jpg')
+	div(elem='item')
+		img(src='img/slide-img-2.jpg')
+	div(elem='item')
+		img(src='img/slide-img-3.jpg')
+```
+
+#### Example of dest file structure:
+```
+dest
+	|- assets
+		|- css
+		   index.css
+		|- js
+		   index.js
+		|- img
+		   slide-img-1.jpg
+		   slide-img-2.jpg
+		   slide-img-3.jpg
+	index.html
+```
