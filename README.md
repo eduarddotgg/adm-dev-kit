@@ -1,7 +1,7 @@
 # ADM DEV KIT
 <img align="right" width="77" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-main-logo.png">
-ADM DEV KIT (Gulp) - component driven static website starter kit (Jade/ PostCSS).  
-Build Your next Project with independent and isolated components.
+ADM DEV KIT (Gulp) - component driven static website starter kit.  
+Starting tool for component driven development using [Jade](https://github.com/jadejs/jade) and [PostCSS](https://github.com/postcss/postcss).
 
 ## Problem.
 While developing static website all HTML, JS and CSS dependencies are stored in different places and included into different files.
@@ -14,17 +14,17 @@ As a solution to that i would like to offer component driven development for sta
 Component driven development can make our dependencies handling much easier. You can keep all component's related JS and CSS dependencies in one place.
 
 ## What is inside?
-- [Gulp](https://github.com/gulpjs/gulp) as task runner;
+- [Gulp](https://github.com/gulpjs/gulp) as task runner (already includes tasks for minifying JS and CSS);
 - [Express](https://github.com/strongloop/express) for serving static files;
 - [Browser-Sync](https://github.com/BrowserSync/browser-sync) for sync browsing and browser refreshing;
 - [Jade](https://github.com/jadejs/jade) as template language;
-- [PostHTML BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure ;
-- [PostCSS](https://github.com/postcss/postcss) as pre/postprocessor for CSS;
+- [PostHTML BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure;
+- [PostCSS](https://github.com/postcss/postcss) as main pre/postprocessor for CSS compiling;
 - Basic css style for default html tags;
 - Custom built Qr-Code UI for easy opening on mobile devices (Coming up).
 
 ## Usage
-Clone/fork or just download repositry and install all node dependencies: 
+Clone/fork or just download repository and install all node dependencies: 
 ```
 $ npm i
 ```
@@ -69,6 +69,7 @@ webroot
 			   news-box.js
 			   news-box.css
 	index.jade
+	variables.yml (CSS variables)
 ```
   
 #### Example of markup:
