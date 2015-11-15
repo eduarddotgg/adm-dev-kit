@@ -113,7 +113,7 @@ gulp.task('components', function(){
 			// CSS
 			.pipe($.if('**/*.css', $.postcss(processors)))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
-			.pipe($.if('assets/css/**/*.css', postcss(postprocess)))
+			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
 			
 			.pipe($.replace(/<link href[^>]+?[ ]*>/g, ''))
 			.pipe($.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
