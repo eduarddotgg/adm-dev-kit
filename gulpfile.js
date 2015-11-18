@@ -41,30 +41,6 @@ var autoprefixer     = require('autoprefixer');
 var cssnano          = require('cssnano');
 var query            = require("css-mqpacker")();
 
-// POSTCSS PLUGINS SETTINGS
-var cssMaps = {
-	basePath: (src),
-	maps: ['variables.yml']
-};
-
-var processors = [
-	postcssImport
-	, nested
-	, map(cssMaps)
-	, minmax
-	, mscale
-	, grid
-	// , font
-];
-
-var postprocess = [
-	autoprefixer
-	, customProperties
-	, pxtorem
-	, query
-	, cssnano
-];
-
 
 // SERVER
 gulp.task('server', function() {
@@ -74,6 +50,30 @@ gulp.task('server', function() {
 
 // COMPONENTS
 gulp.task('components', function(){
+	// POSTCSS PLUGINS SETTINGS
+	var cssMaps = {
+		basePath: (src),
+		maps: ['variables.yml']
+	};
+	
+	var processors = [
+		postcssImport
+		, nested
+		, map(cssMaps)
+		, minmax
+		, mscale
+		, grid
+		// , font
+	];
+	
+	var postprocess = [
+		autoprefixer
+		, customProperties
+		, pxtorem
+		, query
+		, cssnano
+	];
+	
 	return gulp.src(src + '/*.jade')
 		.pipe($.foreach(function(stream, file){
 			
