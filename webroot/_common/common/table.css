@@ -3,11 +3,11 @@
 
 table {
 	background: #fff;
-	border: solid 1px map(divider-color);
+	border: solid 1px $dividerColor;
 	border-collapse: collapse;
-	font-family: map(font-family);
-	font-size: map(font-size);
-	line-height: map(line-height);
+	font-family: $fontFamily;
+	font-size: $fontSize;
+	line-height: $lineHeight;
 	margin: 0;
 	width: 100%;
 }
@@ -21,17 +21,17 @@ caption {
 }
 
 thead, tfoot {
-	background: map(body-secondary-color);
+	background: $bodySecondaryColor;
 	font-weight:  bold;
 }
 
 tbody tr {
-	&:nth-child(even){ background: map(table-row-even-color); }
-	&:nth-child(odd){ background: map(table-row-odd-color); }
+	&:nth-child(even) { background: $tableRowEvenColor; }
+	&:nth-child(odd) { background: $tableRowOddColor; }
 }
 
 tr {
-	border: solid 1px map(divider-color);
+	border: solid 1px $dividerColor;
 }
 
 th,td {

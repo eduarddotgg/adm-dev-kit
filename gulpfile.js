@@ -30,7 +30,7 @@ var posthtmlBem      = require('posthtml-bem');
 var postcssImport    = require('postcss-import');
 var nested           = require('postcss-nested');
 var postcssBem       = require('postcss-bem');
-var map              = require('postcss-map');
+var vars             = require('postcss-simple-vars');
 var minmax           = require('postcss-media-minmax');
 var mscale           = require('postcss-modular-scale');
 var grid             = require('postcss-simple-grid');
@@ -39,7 +39,7 @@ var customProperties = require('postcss-custom-properties');
 var font             = require('postcss-font-magician');
 var autoprefixer     = require('autoprefixer');
 var cssnano          = require('cssnano');
-var query            = require("css-mqpacker")();
+var query            = require("css-mqpacker");
 
 
 // SERVER
@@ -51,26 +51,31 @@ gulp.task('server', function() {
 // COMPONENTS
 gulp.task('components', function(){
 	// POSTCSS PLUGINS SETTINGS
-	var cssMaps = {
-		basePath: (src),
-		maps: ['variables.yml']
-	};
-	
 	var processors = [
 		postcssImport
+        , vars({ 
+            variables: function(){
+	            delete require.cache[require.resolve('./' + src + '/variables.js')];
+                return require('./' + src + '/variables.js');
+            }, 
+            silent: true,
+            unknown: function (node, name, result) {
+                node.warn(result, 'Unknown variable ' + name);
+            }
+        })
 		, nested
-		, map(cssMaps)
+		// , postcssBem
 		, minmax
 		, mscale
 		, grid
 		// , font
 	];
-	
+
 	var postprocess = [
 		autoprefixer
 		, customProperties
 		, pxtorem
-		, query
+		, query({sort: true})
 		, cssnano
 	];
 	

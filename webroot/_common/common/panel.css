@@ -1,5 +1,5 @@
 .panel{
-	background: map(divider-color);
+	background: $dividerColor;
 	border-radius: 5px;
 	display: block;
 	padding: 10px;

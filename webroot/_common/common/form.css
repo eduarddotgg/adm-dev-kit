@@ -2,30 +2,30 @@
 
 
 form {
-	font-family: map(font-family);
-	margin: map(margin);
+	font-family: $fontFamily;
+	margin: $margin;
 	width: 100%;
 }
 
 fieldset {
-	border: solid 1px map(divider-color);
-	border-radius: map(radius);
+	border: solid 1px $dividerColor;
+	border-radius: $radius;
 	padding: 20px;
 	width: 100%;
 }
 
 label,
 legend {
-	font-size: map(font-size);
+	font-size: $fontSize;
 	font-weight: bold;
 	margin: 0;
 }
 
 input {
 	background: #fff;
-	border-radius: map(radius);
-	border: solid 1px map(divider-color);
-	font-size: map(font-size);
+	border-radius: $radius;
+	border: solid 1px $dividerColor;
+	font-size: $font-size;
 	font-weight: normal;
 	padding: 8px;
 	transition: all .1s ease-in-out;
@@ -33,15 +33,15 @@ input {
 }
 
 input:focus{
-	border-color: map(divider-darken-color)
+	border-color: $dividerDarkenColor;
 }
 
 button,
 input[type="button"],
 input[type="submit"] {
-	background: map(primary-color);
+	background: $primaryColor;
 	border: none;
-	border-radius: map(radius);
+	border-radius: $radius;
 	color: #fff;
 	cursor: pointer;
 	display: block;
@@ -55,14 +55,14 @@ input[type="button"]:hover,
 input[type="button"]:focus,
 input[type="submit"]:hover,
 input[type="submit"]:focus{
-	background: map(type-primary-color);
+	background: $typePrimaryColor;
 }
 
 textarea {
 	background: #fff;
-	border-radius: map(radius);
-	border: solid 1px map(divider-color);
-	font-size: map(font-size);
+	border-radius: $radius;
+	border: solid 1px $dividerColor;
+	font-size: $fontSize;
 	padding: 8px;
 	min-height: 150px;
 	resize: none;

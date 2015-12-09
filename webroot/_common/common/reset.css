@@ -31,12 +31,13 @@ body {
 }
 
 body {
-	background: map(body-primary-color);
-	color: map(type-primary-color);
-	font-family: map(font-family);
-	font-size: map(font-size);
-	font-weight: map(font-weight);
-	line-height: map(line-height);
+	background: $bodyPrimaryColor;
+	color: $typePrimaryColor;
+	font-family: $fontFamily;
+	font-size: $fontSize;
+	font-weight: $fontWeight;
+	line-height: $lineHeight;
+    text-size-adjust: none;
 }
 
 img {

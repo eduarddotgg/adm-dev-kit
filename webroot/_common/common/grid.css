@@ -1,17 +1,17 @@
 .row { create-row: 1320px; }
 .col { create-column: 40px; }
 
-@media map(small) {
+@media $small {
 	.s { create-grid: 12; }
 	.ofst_s {create-offset: 12;}
 }
 
-@media map(medium){
+@media $medium {
 	.m { create-grid: 12; }
-	.ofst_m {create-offset: 12;}
+	.ofst_m { create-offset: 12; }
 }
 
-@media map(large){
+@media $large {
 	.l { create-grid: 12; }
-	.ofst_l {create-offset: 12;}
+	.ofst_l { create-offset: 12; }
 }
