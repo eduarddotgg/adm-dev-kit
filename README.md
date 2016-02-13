@@ -20,8 +20,8 @@ Component driven development can make our dependencies handling much easier. You
 - [Jade](https://github.com/jadejs/jade) as template language;
 - [PostHTML-BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure;
 - [PostCSS](https://github.com/postcss/postcss) as main pre/postprocessor for CSS;
+- [MY IP UI](https://github.com/admdh/my-ip-ui) Custom built Qr-Code UI for easy opening on mobile devices.
 - Basic css style for default html tags;
-- Custom built Qr-Code UI for easy opening on mobile devices (Coming up).
 
 ## Usage
 Clone/fork or just download repository and install all node dependencies: 
@@ -31,7 +31,7 @@ $ npm i
 Edit host name, port for Your own in package.json.
 Than run:
 ```
-$ npm run
+$ npm start
 ```
 Open in Your browser:
 ```
