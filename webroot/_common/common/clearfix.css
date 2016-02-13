@@ -1,6 +1,5 @@
 /* CLEAR FIX DEFAULTS*/
 
-
 .clearfix {
 	&:before, &:after {
 		content: " ";

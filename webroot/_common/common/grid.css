@@ -3,15 +3,15 @@
 
 @media $small {
 	.s { create-grid: 12; }
-	.ofst_s {create-offset: 12;}
+	.ofst-s {create-offset: 12;}
 }
 
 @media $medium {
 	.m { create-grid: 12; }
-	.ofst_m { create-offset: 12; }
+	.ofst-m { create-offset: 12; }
 }
 
 @media $large {
 	.l { create-grid: 12; }
-	.ofst_l { create-offset: 12; }
+	.ofst-l { create-offset: 12; }
 }
