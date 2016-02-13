@@ -1,50 +1,50 @@
-var gulp		     = require('gulp');
-var $	 		     = require('gulp-load-plugins')();
-var server           = require('gulp-develop-server');
-var watch		     = require('gulp-watch');
-var path		     = require('path');
-var runSequence      = require('run-sequence');
-var args		     = require('yargs').argv;
-var pngquant	     = require('imagemin-pngquant');
+var gulp			 = require('gulp');
+var $	 			 = require('gulp-load-plugins')();
+var server		     = require('gulp-develop-server');
+var watch			 = require('gulp-watch');
+var path			 = require('path');
+var runSequence	     = require('run-sequence');
+var args			 = require('yargs').argv;
+var pngquant		 = require('imagemin-pngquant');
 
+
+// ENV
+var isDevelopment	 = args.env === 'development';
+var isProduction	 = args.env === 'production';
 
 // 
-var isDevelopment    = args.env === 'development';
-var isProduction     = args.env === 'production';
-
-// 
-var src		         = 'webroot';
-var dest		     = 'dest';
+var src				 = 'webroot';
+var dest			 = 'dest';
 
 // ASSETS FOLDERS
-var assetsFolder     = 'assets/';
-var jsFolder	     = assetsFolder + 'js/';
-var cssFolder	     = assetsFolder + 'css/';
-var imgFolder	     = '/' + assetsFolder + 'img/';
+var assetsFolder	 = 'assets/';
+var jsFolder		 = assetsFolder + 'js/';
+var cssFolder		 = assetsFolder + 'css/';
+var imgFolder		 = '/' + assetsFolder + 'img/';
 
 
 // POSTHTML PLUGINS
-var posthtmlBem      = require('posthtml-bem');
+var posthtmlBem	     = require('posthtml-bem');
 
 // POSTCSS PLUGINS
-var postcssImport    = require('postcss-import');
-var nested           = require('postcss-nested');
-var postcssBem       = require('postcss-bem');
-var vars             = require('postcss-simple-vars');
-var minmax           = require('postcss-media-minmax');
-var mscale           = require('postcss-modular-scale');
-var grid             = require('postcss-simple-grid');
-var pxtorem          = require('postcss-pxtorem');
+var postcssImport	 = require('postcss-import');
+var nested		     = require('postcss-nested');
+var cssvariables	 = require('postcss-css-variables');
+var vars			 = require('postcss-simple-vars');
+var minmax		     = require('postcss-media-minmax');
+var mscale		     = require('postcss-modular-scale');
+var grid			 = require('postcss-simple-grid');
+var pxtorem		     = require('postcss-pxtorem');
 var customProperties = require('postcss-custom-properties');
-var font             = require('postcss-font-magician');
-var autoprefixer     = require('autoprefixer');
-var cssnano          = require('cssnano');
-var query            = require("css-mqpacker");
+var font			 = require('postcss-font-magician');
+var autoprefixer	 = require('autoprefixer');
+var cssnano		     = require('cssnano');
+var query			 = require('css-mqpacker');
 
 
 // SERVER
 gulp.task('server', function() {
-    server.listen({path: './server.js'});
+	server.listen({path: './server.js'});
 });
 
 
@@ -53,28 +53,31 @@ gulp.task('components', function(){
 	// POSTCSS PLUGINS SETTINGS
 	var processors = [
 		postcssImport
-        , vars({ 
-            variables: function(){
-	            delete require.cache[require.resolve('./' + src + '/variables.js')];
-                return require('./' + src + '/variables.js');
-            }, 
-            silent: true,
-            unknown: function (node, name, result) {
-                node.warn(result, 'Unknown variable ' + name);
-            }
-        })
+		, vars({ 
+			variables: function(){
+				delete require.cache[require.resolve('./' + src + '/variables.js')];
+				return require('./' + src + '/variables.js');
+			}, 
+			silent: true,
+			unknown: function (node, name, result) {
+				node.warn(result, 'Unknown variable ' + name);
+			}
+		})
 		, nested
-		// , postcssBem
+		, cssvariables
 		, minmax
 		, mscale
-		, grid
+		, grid({separator: '--'})
 		// , font
 	];
 
 	var postprocess = [
 		autoprefixer
 		, customProperties
-		, pxtorem
+		, pxtorem({
+			propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing', 'margin', 'padding'],
+			mediaQuery: true
+		})
 		, query({sort: true})
 		, cssnano
 	];
