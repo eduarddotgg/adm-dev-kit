@@ -1,5 +1,5 @@
 # ADM DEV KIT
-<img align="right" width="77" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-main-logo.png">
+<img align="right" width="77" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-logo.png">
 ADM DEV KIT (Gulp) - component driven static website starter kit.  
 Starting tool for component driven development using [Jade](https://github.com/jadejs/jade) + [PostHTML](https://github.com/posthtml/posthtml)-[BEM](https://github.com/rajdee/posthtml-bem) and [PostCSS](https://github.com/postcss/postcss).
 
