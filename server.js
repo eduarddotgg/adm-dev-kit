@@ -1,6 +1,7 @@
 var express  = require('express');
 var open     = require("open");
 var pjson    = require('./package.json');
+var myipui   = require('my-ip-ui');
 
 require("console-stamp")(console, {
 	pattern : "HH:MM:ss",
@@ -14,6 +15,10 @@ var host     = pjson.host || 'adm-dev-kit';
 var port     = pjson.port || 3080;
 var bsPort   = pjson.bsport || 3010;
 var bsPortUI = pjson.bsportUI || 3091;
+
+
+// MY IP UI
+server.use(myipui({ port: port }));
 
 
 // EXPRESS STATIC
