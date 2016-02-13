@@ -1,24 +1,24 @@
 module.exports = {
 	// MEDIA QUERIES
-	small              : 'screen and (width <= 40.063em)',
-	smallDown          : 'screen and (width <= 40em)',
-	smallOnly          : 'screen and (width <= 40em)',
+	small              : 'screen and (width >= 479px)',
+	smallDown          : 'screen and (width <= 479px)',
+	smallOnly          : 'screen and (width <= 479px)',
 
-	medium             : 'screen and (width >= 40.063em)',
-	mediumDown         : 'screen and (width <= 64em)',
-	mediumOnly         : 'screen and (width >= 40.063em) and (width <= 64em)',
+	medium             : 'screen and (width >= 480px)',
+	mediumDown         : 'screen and (width <= 959px)',
+	mediumOnly         : 'screen and (width >= 480px) and (width <= 959px)',
 
-	large              : 'screen and (width >= 60.063em)',
-	largeDown          : 'screen and (width <= 90em)',
-	largeOnly          : 'screen and (width >= 60.063em) and (width <= 90em)',
+	large              : 'screen and (width >= 960px)',
+	largeDown          : 'screen and (width <= 1439px)',
+	largeOnly          : 'screen and (width >= 960px) and (width <= 1439px)',
 
-	xlarge             : 'screen and (width >= 90.063em)',
-	xlargeDown         : 'screen and (width <= 120em)',
-	xlargeOnly         : 'screen and (width >= 90.063em) and (width <= 120em)',
+	xlarge             : 'screen and (width >= 1440px)',
+	xlargeDown         : 'screen and (width <= 1919px)',
+	xlargeOnly         : 'screen and (width >= 1440px) and (width <= 1919px)',
 
-	xxlarge            : 'screen and (width >= 120.063em)',
-	xxlargeDown        : 'screen and (width <= 9999999em)',
-	xxlargeOnly        : 'screen and (width >= 120.063em) and (width <= 9999999em)',
+	xxlarge            : 'screen and (width >= 1920px)',
+	xxlargeDown        : 'screen and (width <= 9999px)',
+	xxlargeOnly        : 'screen and (width >= 1920px) and (width <= 9999px)',
 
 
 
