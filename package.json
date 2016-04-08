@@ -58,6 +58,7 @@
     "gulp-watch": "^4.3.5",
     "imagemin-pngquant": "^4.2.0",
     "morgan": "^1.7.0",
+    "my-ip": "^1.1.1",
     "my-ip-ui": "^1.0.3",
     "open": "0.0.5",
     "postcss-calc": "^5.2.0",

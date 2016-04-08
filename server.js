@@ -5,17 +5,20 @@ var path              = require('path');
 var open              = require("open");
 var pjson             = require('./package.json');
 var myipui            = require('my-ip-ui');
-var timeStamp         = require("console-stamp");
+var timeStamp         = require("console-stamp")(console, { pattern : "HH:MM:ss", label: false});
 var dateFormat        = require('dateformat');
+var myip              = require('my-ip');
 
 
+// ENV Settings
 var src               = '/webroot';
 var pref              = 'http://';
 var host              = pjson.host || 'adm-dev-kit';
 var port              = pjson.port || 3080;
+var openURL           = host;
 
 
-// PostCSS PLUGINS
+// PostCSS Plugins
 var postcssMiddleware = require('postcss-middleware');
 var autoprefixer	  = require('autoprefixer');
 var nested		      = require('postcss-nested');
@@ -24,9 +27,8 @@ var minmax		      = require('postcss-media-minmax');
 var mscale		      = require('postcss-modular-scale');
 var grid			  = require('postcss-simple-grid');
 
-// PostCSS SETTINGS
+// PostCSS Settings
 var cssVariables = '.' + src + '/cssVariables.js';
-
 var postcssPlugins = [
 	vars({
 		variables: function(){
@@ -46,61 +48,57 @@ var postcssPlugins = [
 ];
 
 
-// SEVER
+// Injecting QR-Code to every served page
 server.use(myipui({ port: port }));
 
-// SERVER STATIC
+// Static, Views
 server.use(express.static(path.join(__dirname, src)));
 server.set('views', path.join(__dirname, src));
 server.set('view engine', 'jade');
 server.set('view cache', false);
 
 
-// TIMESTAMP
+// Time
 function getTime(){
 	var now = new Date();
 	var time = '[' + dateFormat(now, "hh:MM:ss") + ']';
 	return time;
 }
 
-// LOG
+// Express Log
 morgan.token("timeStamp", function (req, res) { return getTime() });
 server.use(morgan(':timeStamp :method :status :url :response-time ms'));
 
+
+// Serving "Index Page"
 server.get('/', function (req, res) {
 	res.render('index');
 });
 
+// Serving "Other Pages"
 server.get('/:pageUrl', function (req, res) {
-	var pageUrl = req.params.pageUrl;
-	
-	res.render(pageUrl);
+	res.render(req.params.pageUrl);
 });
 
+// PostCSS Middleware
 server.use('/webroot/*.css', postcssMiddleware({
-
-	src: function(req) {
-		return path.join(__dirname, req.originalUrl);
-	},
+	src: function(req) { return path.join(__dirname, req.originalUrl); },
 	plugins: postcssPlugins
 }));
 
 
-timeStamp(console, {
-	pattern : "HH:MM:ss",
-	label: false
-});
-
-
-// START SERVER ON DEFINED PORT
+// Listen Port
 server.listen(port, function(res, req){
 	console.log('');
 	console.log('');
-	console.log('Server started!');
+	console.log('Access URLs:');
 	console.log('-------------------------------------------------------');
-	console.log('HTTP Server        : ' + pref + host + ':' + port);
+	console.log('Local        : ' + pref + host + ':' + port);
+	console.log('-------------------------------------------------------');
+	console.log('External     : ' + pref + myip() + ':' + port);
 	console.log('-------------------------------------------------------');
 	console.log('');
 	console.log('');
-	open(pref + host + ':' + port);
+
+	open(pref + openURL + ':' + port + '/');
 });
