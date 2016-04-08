@@ -35,7 +35,7 @@ module.exports = {
 	tableRowEvenColor  : '#f6f6f6',
 	tableRowOddColor   : '#fff',
 
-	bodyPrimaryColor   : 'red',
+	bodyPrimaryColor   : '#fff',
 	bodySecondaryColor : '#e0e0e0',
 
 	errorColor         : '#ff4f37',
