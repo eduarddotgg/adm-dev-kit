@@ -13,9 +13,9 @@ var myip              = require('my-ip');
 // ENV Settings
 var src               = '/webroot';
 var pref              = 'http://';
-var host              = pjson.host || 'adm-dev-kit';
-var port              = pjson.port || 3080;
-var openURL           = host;
+var host              = pjson.host || 'adm-dev-kit'; // package.json
+var port              = pjson.port || 3080; // package.json
+var openURL           = host; // host or myip()
 
 
 // PostCSS Plugins
@@ -31,6 +31,7 @@ var grid			  = require('postcss-simple-grid');
 var cssVariables = '.' + src + '/cssVariables.js';
 var postcssPlugins = [
 	vars({
+		// Update variables whithout server restart.
 		variables: function(){
 			delete require.cache[require.resolve(cssVariables)];
 			return require(cssVariables);
@@ -94,11 +95,10 @@ server.listen(port, function(res, req){
 	console.log('Access URLs:');
 	console.log('-------------------------------------------------------');
 	console.log('Local        : ' + pref + host + ':' + port);
-	console.log('-------------------------------------------------------');
 	console.log('External     : ' + pref + myip() + ':' + port);
 	console.log('-------------------------------------------------------');
 	console.log('');
 	console.log('');
 
-	open(pref + openURL + ':' + port + '/');
+	open(pref + openURL + ':' + port + '/'); // Opens in your default browser
 });
