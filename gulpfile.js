@@ -1,6 +1,5 @@
 var gulp			 = require('gulp');
 var $	 			 = require('gulp-load-plugins')();
-var server		     = require('gulp-develop-server');
 var watch			 = require('gulp-watch');
 var path			 = require('path');
 var runSequence	     = require('run-sequence');
@@ -41,11 +40,6 @@ var autoprefixer	 = require('autoprefixer');
 var cssnano		     = require('cssnano');
 var query			 = require('css-mqpacker');
 
-
-// SERVER
-gulp.task('server', function() {
-	server.listen({path: './server.js'});
-});
 
 
 // COMPONENTS
@@ -148,11 +142,11 @@ gulp.task('img', function(){
 });
 
 
-// GULP WATCH TASK
-gulp.task('watch', function(){
-	gulp.watch([src + '/**/**/**/*.*'], ['components'])
-	gulp.watch([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'], ['img'])
-});
+// // GULP WATCH TASK
+// gulp.task('watch', function(){
+// 	gulp.watch([src + '/**/**/**/*.*'], ['components'])
+// 	gulp.watch([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'], ['img'])
+// });
 
 
 // GULP DEFAULT TASK
