@@ -28,7 +28,7 @@ input {
 	background: #fff;
 	border-radius: $radius;
 	border: solid 1px $dividerColor;
-	font-size: $font-size;
+	font-size: $fontSize;
 	font-weight: normal;
 	padding: 8px;
 	transition: all .1s ease-in-out;

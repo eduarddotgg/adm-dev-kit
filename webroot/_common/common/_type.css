@@ -81,7 +81,7 @@ acronym {
 blockquote {
 	background: none;
 	border-left: solid 1px $dividerColor;
-	margin: $margin);
+	margin: $margin;
 	padding: 10px 20px;
 
 	cite {
@@ -110,7 +110,7 @@ hr {
 ul,ol {
 	font-family: $fontFamily;
 	line-height: $lineHeight;
-	margin: $margin);
+	margin: $margin;
 	padding: 0 0 0 30px;
 
 	ul,ol {
