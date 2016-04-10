@@ -5,7 +5,7 @@ var path              = require('path');
 var open              = require("open");
 var pjson             = require('./package.json');
 var myipui            = require('my-ip-ui');
-var timeStamp         = require("console-stamp")(console, { pattern : "HH:MM:ss", label: false});
+// var timeStamp      = require("console-stamp")(console, { pattern : "HH:MM:ss", label: false});
 var dateFormat        = require('dateformat');
 var myip              = require('my-ip');
 
@@ -18,19 +18,30 @@ var port              = pjson.port || 3080; // package.json
 var openURL           = host; // host or myip()
 
 
+// PostHTML Plugins
+var posthtml          = require ('posthtml');
+var posthtmlW3C       = require('posthtml-w3c');
+
+
 // PostCSS Plugins
 var postcssMiddleware = require('postcss-middleware');
-var autoprefixer	  = require('autoprefixer');
-var nested		      = require('postcss-nested');
-var vars			  = require('postcss-simple-vars');
-var minmax		      = require('postcss-media-minmax');
-var mscale		      = require('postcss-modular-scale');
-var grid			  = require('postcss-simple-grid');
+var autoprefixer      = require('autoprefixer');
+var nested            = require('postcss-nested');
+var vars              = require('postcss-simple-vars');
+var minmax            = require('postcss-media-minmax');
+var mscale            = require('postcss-modular-scale');
+var grid              = require('postcss-simple-grid');
+var stylelint         = require("stylelint");
+var reporter          = require("postcss-reporter");
 
 // PostCSS Settings
-var cssVariables = '.' + src + '/cssVariables.js';
+var cssVariables      = '.' + src + '/_cssVariables.js';
 var postcssPlugins = [
-	vars({
+	// stylelint({
+	// 	configFile: './.stylelintrc'
+	// }),
+	reporter({clearMessages: true})
+	, vars({
 		// Update variables whithout server restart.
 		variables: function(){
 			delete require.cache[require.resolve(cssVariables)];
@@ -52,12 +63,6 @@ var postcssPlugins = [
 // Injecting QR-Code to every served page
 server.use(myipui({ port: port }));
 
-// Static, Views
-server.use(express.static(path.join(__dirname, src)));
-server.set('views', path.join(__dirname, src));
-server.set('view engine', 'jade');
-server.set('view cache', false);
-
 
 // Time
 function getTime(){
@@ -67,8 +72,47 @@ function getTime(){
 }
 
 // Express Log
-morgan.token("timeStamp", function (req, res) { return getTime() });
-server.use(morgan(':timeStamp :method :status :url :response-time ms'));
+// morgan.token("showTime", function (req, res) { return getTime() });
+// server.use(morgan(':showTime :method :status :url :response-time ms'));
+
+
+// Static, Views
+server.use(express.static(path.join(__dirname, src)));
+server.set('views', path.join(__dirname, src));
+
+
+// PostHTML with Jade
+server.engine('jade', function (path, options, callback) {
+	// PostHTML plugins
+	var plugins = [
+		posthtmlW3C()
+	];
+
+	var html = require('jade').renderFile(path, options);
+
+	posthtml(plugins)
+		.process(html)
+		.then(function (result) {
+			if (typeof callback === 'function') {
+				var res;
+				try {
+					res = result.html;
+				} catch (ex) {
+					return callback(ex);
+				}
+				return callback(null, res);
+			}
+		});
+});
+server.set('view engine', 'jade');
+server.set('view cache', false);
+
+
+// PostCSS Middleware
+server.use('/webroot/*.css', postcssMiddleware({
+	src: function(req) { return path.join(__dirname, req.originalUrl); },
+	plugins: postcssPlugins
+}));
 
 
 // Serving "Index Page"
@@ -81,24 +125,23 @@ server.get('/:pageUrl', function (req, res) {
 	res.render(req.params.pageUrl);
 });
 
-// PostCSS Middleware
-server.use('/webroot/*.css', postcssMiddleware({
-	src: function(req) { return path.join(__dirname, req.originalUrl); },
-	plugins: postcssPlugins
-}));
-
 
 // Listen Port
 server.listen(port, function(res, req){
+	console.log('-----------------------------------------------------------------');
+	console.log('DEV KIT - Component Drive Static Website Development Tool');
+	console.log('-----------------------------------------------------------------');
 	console.log('');
 	console.log('');
 	console.log('Access URLs:');
-	console.log('-------------------------------------------------------');
+	console.log('-----------------------------------------------------------------');
 	console.log('Local        : ' + pref + host + ':' + port);
 	console.log('External     : ' + pref + myip() + ':' + port);
-	console.log('-------------------------------------------------------');
 	console.log('');
 	console.log('');
+	console.log('');
+	console.log('Server log:');
+	console.log('-----------------------------------------------------------------');
 
 	open(pref + openURL + ':' + port + '/'); // Opens in your default browser
 });
