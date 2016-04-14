@@ -125,7 +125,7 @@ gulp.task('components', function(){
 			.pipe($.replace(/<link href[^>]+?[ ]*>/g, ''))
 			.pipe($.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
 			.pipe(inlineImagePath({path:"assets/img"}))
-			// .pipe($.replace('/(<img.*?src=")([^"]*?(\/[^\/]*\.[^"]+))/g', ''))
+			// .pipe($.replace('r=/(url\s*\(['"]?\s*)(?:.*)(\/.*?['"]?\s*\))/', ''))
 			.pipe($.replace('<css></css>', cssFileLink))
 			.pipe($.replace('<js></js>', jsFileLink))
 		}))
