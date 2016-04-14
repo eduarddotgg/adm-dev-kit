@@ -5,13 +5,14 @@ var path			 = require('path');
 var runSequence	     = require('run-sequence');
 var args			 = require('yargs').argv;
 var pngquant		 = require('imagemin-pngquant');
+var inlineImagePath  = require('gulp-inline-image-path');
 
 
 // ENV
 var isDevelopment	 = args.env === 'development';
 var isProduction	 = args.env === 'production';
 
-// 
+//
 var src				 = 'webroot';
 var dest			 = 'dest';
 
@@ -41,28 +42,30 @@ var cssnano		     = require('cssnano');
 var query			 = require('css-mqpacker');
 
 
-
 // COMPONENTS
 gulp.task('components', function(){
 	// POSTCSS PLUGINS SETTINGS
 	var processors = [
 		postcssImport
-		, vars({ 
+		, vars({
 			variables: function(){
 				delete require.cache[require.resolve('./' + src + '/variables.js')];
 				return require('./' + src + '/variables.js');
-			}, 
+			},
 			silent: true,
 			unknown: function (node, name, result) {
 				node.warn(result, 'Unknown variable ' + name);
 			}
 		})
-		, nested
-		, cssvariables
 		, minmax
+		, nested
 		, mscale
+		, cssvariables
 		, grid({separator: '--'})
-		// , font
+		,url({
+			url: "rebase" // or "inline" or "copy"
+		})
+		, font
 	];
 
 	var postprocess = [
@@ -75,26 +78,26 @@ gulp.task('components', function(){
 		, query({sort: true})
 		, cssnano
 	];
-	
+
 	return gulp.src(src + '/*.jade')
 		.pipe($.foreach(function(stream, file){
-			
+
 			// BASE FILE NAME
 			var name = path.basename(file.path);
-			
+
 			// CSS
 			var cssFileName = name.replace(/\.[^.]*$/i, '.css');
 			var cssFilePath = 'assets/css/';
 			var cssFileLink = '<link rel="stylesheet" type="text/css" href="'+ cssFilePath + cssFileName +'"/>';
-			
+
 			// JS
 			var jsFileName = name.replace(/\.[^.]*$/i, '.min.js');
 			var jsFilePath = 'assets/js/';
 			var jsFileLink = '<script src="'+ jsFilePath + jsFileName +'"></script>';
-			
+
 			// RETURN STREAM
 			return stream
-			
+
 			// JADE 2 HTML
 			.pipe($.jade())
 			.pipe($.posthtml([
@@ -104,22 +107,25 @@ gulp.task('components', function(){
 					modDlmtr: '--'
 				})
 			]))
-			
-			// EXTRACT JS AND CSS
+			.pipe($.replace('webroot/', ''))
+
+			// 		// EXTRACT JS AND CSS
+
 			.pipe($.resources())
-			
+
 			// JS
 			.pipe($.if('**/*.js', $.concat(jsFolder + jsFileName)))
 			.pipe($.if(jsFolder + '*.js', $.uglify()))
-			
+
 			// CSS
 			.pipe($.if('**/*.css', $.postcss(processors)))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
 			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
-			
+
 			.pipe($.replace(/<link href[^>]+?[ ]*>/g, ''))
 			.pipe($.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
-			.pipe($.replace('img/', 'assets/img/'))
+			.pipe(inlineImagePath({path:"assets/img"}))
+			// .pipe($.replace('/(<img.*?src=")([^"]*?(\/[^\/]*\.[^"]+))/g', ''))
 			.pipe($.replace('<css></css>', cssFileLink))
 			.pipe($.replace('<js></js>', jsFileLink))
 		}))
@@ -130,7 +136,7 @@ gulp.task('components', function(){
 // IMAGES
 gulp.task('img', function(){
 	return gulp.src([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'])
-		.pipe($.if(isProduction, 
+		.pipe($.if(isProduction,
 			$.imagemin({
 				progressive: true,
 				svgoPlugins: [{removeViewBox: false}],
