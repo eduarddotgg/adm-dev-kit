@@ -1,4 +1,6 @@
 # ADM DEV KIT 2.0 coming soon!!!
+
+[![Join the chat at https://gitter.im/admdh/adm-dev-kit](https://badges.gitter.im/admdh/adm-dev-kit.svg)](https://gitter.im/admdh/adm-dev-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
   
     
       
