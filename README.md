@@ -1,3 +1,7 @@
+# ADM DEV KIT 2.0 coming soon!!!
+  
+    
+      
 # ADM DEV KIT
 <img align="right" width="58" height="108" title="Dev Kit Main Logo" src="http://adm-designhouse.com/dev-kit-logo.png">
 ADM DEV KIT (Gulp) - component driven static website starter kit.  
