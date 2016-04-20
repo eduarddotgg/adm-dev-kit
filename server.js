@@ -11,7 +11,8 @@ var myip              = require('my-ip');
 
 
 // ENV Settings
-var src               = '/webroot';
+var src               = 'src';
+var views             = 'webroot';
 var pref              = 'http://';
 var host              = pjson.host || 'adm-dev-kit'; // package.json
 var port              = pjson.port || 3080; // package.json
@@ -35,7 +36,7 @@ var stylelint         = require("stylelint");
 var reporter          = require("postcss-reporter");
 
 // PostCSS Settings
-var cssVariables      = '.' + src + '/_cssVariables.js';
+var cssVariables   = path.join(__dirname, src, '_cssVariables.js');
 var postcssPlugins = [
 	// stylelint({
 	// 	configFile: './.stylelintrc'
@@ -77,7 +78,7 @@ function getTime(){
 
 
 // Static, Views
-server.use(express.static(path.join(__dirname, src)));
+server.use(express.static(path.join(__dirname, views)));
 server.set('views', path.join(__dirname, src));
 
 
@@ -109,8 +110,8 @@ server.set('view cache', false);
 
 
 // PostCSS Middleware
-server.use('/webroot/*.css', postcssMiddleware({
-	src: function(req) { return path.join(__dirname, req.originalUrl); },
+server.use('/*.css', postcssMiddleware({
+	src: function(req) { return path.join(__dirname, src, req.originalUrl); },
 	plugins: postcssPlugins
 }));
 

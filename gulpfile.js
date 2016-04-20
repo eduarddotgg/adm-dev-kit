@@ -13,7 +13,7 @@ var isDevelopment	 = args.env === 'development';
 var isProduction	 = args.env === 'production';
 
 //
-var src				 = 'webroot';
+var src				 = 'src';
 var dest			 = 'dest';
 
 // ASSETS FOLDERS
@@ -62,7 +62,7 @@ gulp.task('components', function(){
 		, mscale
 		, cssvariables
 		, grid({separator: '--'})
-		,url({
+		, url({
 			url: "rebase" // or "inline" or "copy"
 		})
 		, font
