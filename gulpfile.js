@@ -49,8 +49,8 @@ gulp.task('components', function(){
 		postcssImport
 		, vars({
 			variables: function(){
-				delete require.cache[require.resolve('./' + src + '/variables.js')];
-				return require('./' + src + '/variables.js');
+				delete require.cache[require.resolve('./' + src + '/_cssVariables.js')];
+				return require('./' + src + '/_cssVariables.js');
 			},
 			silent: true,
 			unknown: function (node, name, result) {
@@ -62,9 +62,9 @@ gulp.task('components', function(){
 		, mscale
 		, cssvariables
 		, grid({separator: '--'})
-		, url({
-			url: "rebase" // or "inline" or "copy"
-		})
+		// , url({
+		// 	url: "rebase" // or "inline" or "copy"
+		// })
 		, font
 	];
 
@@ -107,17 +107,15 @@ gulp.task('components', function(){
 					modDlmtr: '--'
 				})
 			]))
-			.pipe($.replace('webroot/', ''))
 
-			// 		// EXTRACT JS AND CSS
-
+			// EXTRACT JS AND CSS
 			.pipe($.resources())
 
 			// JS
 			.pipe($.if('**/*.js', $.concat(jsFolder + jsFileName)))
 			.pipe($.if(jsFolder + '*.js', $.uglify()))
 
-			// CSS
+			// CSSs
 			.pipe($.if('**/*.css', $.postcss(processors)))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
 			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
