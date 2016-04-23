@@ -140,7 +140,7 @@ server.get(['/*.ico', '/*.jpeg', '/*.jpg', '/*.png', '/*.svg'], function(req, re
 // Listen Port
 server.listen(port, function(res, req){
 	console.log('-----------------------------------------------------------------');
-	console.log('DEV KIT - Component Drive Static Website Development Tool');
+	console.log('DEV KIT - Component Driven Static Website Development Tool');
 	console.log('-----------------------------------------------------------------');
 	console.log('');
 	console.log('');
