@@ -151,8 +151,12 @@ server.listen(port, function(res, req){
 	console.log('');
 	console.log('');
 	console.log('');
+	console.log('');
+	console.log('');
 	console.log('Server log:');
 	console.log('-----------------------------------------------------------------');
+	console.log('');
+	console.log('');
 
 	open(pref + openURL + ':' + port + '/'); // Opens in your default browser
 });
