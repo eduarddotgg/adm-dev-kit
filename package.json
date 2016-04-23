@@ -72,6 +72,6 @@
     "postcss-simple-vars": "^1.2.0",
     "posthtml-bem": "^0.2.2",
     "run-sequence": "^1.1.5",
-    "yargs": "^3.32.0"
+    "yargs": "^4.6.0"
   }
 }
