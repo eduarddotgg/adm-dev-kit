@@ -6,6 +6,7 @@ var runSequence	     = require('run-sequence');
 var args			 = require('yargs').argv;
 var pngquant		 = require('imagemin-pngquant');
 var inlineImagePath  = require('gulp-inline-image-path');
+var htmlreplace      = require('gulp-html-replace');
 
 
 // ENV
@@ -21,6 +22,7 @@ var assetsFolder	 = 'assets/';
 var jsFolder		 = assetsFolder + 'js/';
 var cssFolder		 = assetsFolder + 'css/';
 var imgFolder		 = '/' + assetsFolder + 'img/';
+var fontsFolder		 = '/' + assetsFolder + 'fonts/';
 
 
 // POSTHTML PLUGINS
@@ -88,12 +90,10 @@ gulp.task('components', function(){
 			// CSS
 			var cssFileName = name.replace(/\.[^.]*$/i, '.css');
 			var cssFilePath = 'assets/css/';
-			var cssFileLink = '<link rel="stylesheet" type="text/css" href="'+ cssFilePath + cssFileName +'"/>';
 
 			// JS
 			var jsFileName = name.replace(/\.[^.]*$/i, '.min.js');
 			var jsFilePath = 'assets/js/';
-			var jsFileLink = '<script src="'+ jsFilePath + jsFileName +'"></script>';
 
 			// RETURN STREAM
 			return stream
@@ -120,12 +120,16 @@ gulp.task('components', function(){
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
 			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
 
+			// REPLACE JS AND CSS TAGS
 			.pipe($.replace(/<link href[^>]+?[ ]*>/g, ''))
 			.pipe($.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
+			.pipe(htmlreplace({
+				'css': cssFilePath + cssFileName,
+				'js': jsFilePath + jsFileName
+			}))
+
+			//	INLINE IMAGES
 			.pipe(inlineImagePath({path:"assets/img"}))
-			// .pipe($.replace('r=/(url\s*\(['"]?\s*)(?:.*)(\/.*?['"]?\s*\))/', ''))
-			.pipe($.replace('<css></css>', cssFileLink))
-			.pipe($.replace('<js></js>', jsFileLink))
 		}))
 		.pipe(gulp.dest(dest));
 });
@@ -145,15 +149,20 @@ gulp.task('img', function(){
 		.pipe(gulp.dest(dest + imgFolder));
 });
 
+gulp.task('favicon', function(){
+	return gulp.src(src + '/favicon.ico')
+		.pipe(gulp.dest(dest));
+});
 
-// // GULP WATCH TASK
-// gulp.task('watch', function(){
-// 	gulp.watch([src + '/**/**/**/*.*'], ['components'])
-// 	gulp.watch([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'], ['img'])
-// });
+// FONTS
+gulp.task('fonts', function(){
+	return gulp.src([src + '/**/*.woff', src + '/**/*.ttf'])
+		.pipe($.rename({dirname: ''}))
+		.pipe(gulp.dest(dest + fontsFolder));
+});
 
 
 // GULP DEFAULT TASK
 gulp.task('default', function(callback){
-	runSequence('components', ['watch'], 'server', callback)
+	runSequence('components', ['img', 'favicon', 'fonts'], callback)
 });

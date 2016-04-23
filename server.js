@@ -1,6 +1,7 @@
 var express           = require('express');
-var morgan            = require('morgan');
 var server            = express();
+var morgan            = require('morgan');
+var fs                = require('fs');
 var path              = require('path');
 var open              = require("open");
 var pjson             = require('./package.json');
@@ -8,6 +9,7 @@ var myipui            = require('my-ip-ui');
 // var timeStamp      = require("console-stamp")(console, { pattern : "HH:MM:ss", label: false});
 var dateFormat        = require('dateformat');
 var myip              = require('my-ip');
+var favicon           = require('serve-favicon');
 
 
 // ENV Settings
@@ -78,9 +80,11 @@ function getTime(){
 
 
 // Static, Views
-server.use(express.static(path.join(__dirname, views)));
 server.set('views', path.join(__dirname, src));
+server.use(express.static(path.join(__dirname, views)));
 
+// FAVICON
+server.use(favicon(path.join(__dirname, src, 'favicon.ico')));
 
 // PostHTML with Jade
 server.engine('jade', function (path, options, callback) {
@@ -124,6 +128,12 @@ server.get('/', function (req, res) {
 // Serving "Other Pages"
 server.get('/:pageUrl', function (req, res) {
 	res.render(req.params.pageUrl);
+});
+
+// Serving Images
+server.get(['/*.ico', '/*.jpeg', '/*.jpg', '/*.png', '/*.svg'], function(req, res){
+	var img = fs.readFileSync(path.join(__dirname, src, req.originalUrl));
+	res.end(img);
 });
 
 

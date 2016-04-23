@@ -81,6 +81,7 @@
     "posthtml-bem": "^0.2.2",
     "posthtml-w3c": "^0.8.1",
     "run-sequence": "^1.1.5",
+    "serve-favicon": "^2.3.0",
     "stylelint": "^5.4.0",
     "yargs": "^4.4.0"
   }

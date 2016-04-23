@@ -3,11 +3,12 @@ html
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel='shortcut icon' type='image/x-icon' href='/favicon.ico')
 		block title
 			title Main Layout
-		//- CSS will be included here
-		css
+		// build:css
+		// endbuild
 	body
 		block content
-		//- JS will be included here
-		js
+		// build:js
+		// endbuild

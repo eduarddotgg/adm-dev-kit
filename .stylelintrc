@@ -1,6 +1,6 @@
 {
 	"rules": {
-		"at-rule-empty-line-before": "always",
+		"at-rule-empty-line-before": ["always", {except: ["blockless-group"]}],
 		"at-rule-no-vendor-prefix": true,
 		"block-closing-brace-newline-after": "always",
 		"block-closing-brace-newline-before": "always",
