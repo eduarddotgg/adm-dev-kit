@@ -43,7 +43,7 @@
     "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
-    "gulp-develop-server": "^0.4.3",
+    "gulp-develop-server": "^0.5.1",
     "gulp-foreach": "^0.1.0",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.4.0",
