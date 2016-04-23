@@ -1,6 +1,3 @@
-/*TABLE DEFAULTS*/
-
-
 table {
 	background: #fff;
 	border: solid 1px $dividerColor;
@@ -20,21 +17,26 @@ caption {
 	text-transform: uppercase;
 }
 
-thead, tfoot {
+thead,
+tfoot {
 	background: $bodySecondaryColor;
-	font-weight:  bold;
-}
-
-tbody tr {
-	&:nth-child(even) { background: $tableRowEvenColor; }
-	&:nth-child(odd) { background: $tableRowOddColor; }
+	font-weight: bold;
 }
 
 tr {
 	border: solid 1px $dividerColor;
+
+	&:nth-child(even) {
+		background: $tableRowEvenColor;
+	}
+
+	&:nth-child(odd) {
+		background: $tableRowOddColor;
+	}
 }
 
-th,td {
+th,
+td {
 	padding: 10px 20px;
 	text-align: left;
 }

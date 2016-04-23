@@ -1,6 +1,9 @@
-/*TYPE DEFAULTS*/
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: $fontFamily;
 	font-weight: bold;
 	line-height: $lineHeight;
@@ -9,44 +12,74 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-size: ms(5)rem;
-	
-	@media $medium { font-size: ms(6)rem; }
-	@media $large { font-size: ms(7)rem; }
+
+	@media $medium {
+		font-size: ms(6)rem;
+	}
+
+	@media $large {
+		font-size: ms(7)rem;
+	}
 }
 
 h2 {
 	font-size: ms(4)rem;
 
-	@media $medium { font-size: ms(5)rem; }
-	@media $large { font-size: ms(6)rem; }
+	@media $medium {
+		font-size: ms(5)rem;
+	}
+
+	@media $large {
+		font-size: ms(6)rem;
+	}
 }
 
 h3 {
 	font-size: ms(3)rem;
 
-	@media $medium { font-size: ms(4)rem; }
-	@media $large { font-size: ms(5)rem; }
+	@media $medium {
+		font-size: ms(4)rem;
+	}
+
+	@media $large {
+		font-size: ms(5)rem;
+	}
 }
 
 h4 {
 	font-size: ms(2)rem;
 
-	@media $medium { font-size: ms(3)rem; }
-	@media $large { font-size: ms(4)rem; }
+	@media $medium {
+		font-size: ms(3)rem;
+	}
+
+	@media $large {
+		font-size: ms(4)rem;
+	}
 }
 
 h5 {
 	font-size: ms(1)rem;
 
-	@media $medium { font-size: ms(2)rem; }
-	@media $large { font-size: ms(3)rem; }
+	@media $medium {
+		font-size: ms(2)rem;
+	}
+
+	@media $large {
+		font-size: ms(3)rem;
+	}
 }
 
 h6 {
 	font-size: ms(1)rem;
 
-	@media $medium { font-size: ms(1.5)rem; }
-	@media $large { font-size: ms(2.5)rem; }
+	@media $medium {
+		font-size: ms(1.5)rem;
+	}
+
+	@media $large {
+		font-size: ms(2.5)rem;
+	}
 }
 
 p {
@@ -61,17 +94,19 @@ p {
 }
 
 a {
-    color: $primaryColor;
-    cursor: pointer;
-    text-decoration: underline;
+	color: $primaryColor;
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-    color: $typePrimaryColor;
+	color: $typePrimaryColor;
 }
 
-small { font-size: ms(0.8)rem; }
+small {
+	font-size: ms(0.8)rem;
+}
 
 abbr,
 acronym {
@@ -84,15 +119,14 @@ blockquote {
 	margin: $margin;
 	padding: 10px 20px;
 
-	cite {
-		&:before {
-			content: "\2014 \0020";
-		}
-	}
 }
 
-cilte {
+cite {
 	color: $typeSecondaryColor;
+}
+
+cite:before {
+	content: "\2014 \0020";
 }
 
 code {
@@ -107,13 +141,15 @@ hr {
 	margin: 20px 0;
 }
 
-ul,ol {
+ul,
+ol {
 	font-family: $fontFamily;
 	line-height: $lineHeight;
 	margin: $margin;
 	padding: 0 0 0 30px;
 
-	ul,ol {
+	ul,
+	ol {
 		margin: 10px 0 0;
 	}
 
@@ -132,9 +168,12 @@ dl {
 		font-weight: bold;
 		margin: 0 0 10px;
 	}
+
 	dd {
 		margin: 0 0 10px;
 
-		&:last-child { margin: 0; }
+		&:last-child {
+			margin: 0;
+		}
 	}
 }

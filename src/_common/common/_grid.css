@@ -1,17 +1,37 @@
-.row { create-row: 1320px; }
-.col { create-column: 40px; }
+.row {
+	create-row: 1320px;
+}
+
+.col {
+	create-column: 40px;
+}
 
 @media $small {
-	.s { create-grid: 12; }
-	.ofst-s {create-offset: 12;}
+	.s {
+		create-grid: 12;
+	}
+
+	.ofst-s {
+		create-offset: 12;
+	}
 }
 
 @media $medium {
-	.m { create-grid: 12; }
-	.ofst-m { create-offset: 12; }
+	.m {
+		create-grid: 12;
+	}
+
+	.ofst-m {
+		create-offset: 12;
+	}
 }
 
 @media $large {
-	.l { create-grid: 12; }
-	.ofst-l { create-offset: 12; }
+	.l {
+		create-grid: 12;
+	}
+
+	.ofst-l {
+		create-offset: 12;
+	}
 }

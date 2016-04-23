@@ -38,9 +38,9 @@ var reporter          = require("postcss-reporter");
 // PostCSS Settings
 var cssVariables   = path.join(__dirname, src, '_cssVariables.js');
 var postcssPlugins = [
-	// stylelint({
-	// 	configFile: './.stylelintrc'
-	// }),
+	stylelint({
+		configFile: './.stylelintrc'
+	}),
 	reporter({clearMessages: true})
 	, vars({
 		// Update variables whithout server restart.

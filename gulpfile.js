@@ -115,7 +115,7 @@ gulp.task('components', function(){
 			.pipe($.if('**/*.js', $.concat(jsFolder + jsFileName)))
 			.pipe($.if(jsFolder + '*.js', $.uglify()))
 
-			// CSSs
+			// CSS
 			.pipe($.if('**/*.css', $.postcss(processors)))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
 			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
