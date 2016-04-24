@@ -67,6 +67,7 @@
     "my-ip-ui": "^1.0.3",
     "open": "0.0.5",
     "path": "^0.12.7",
+    "postcss-assets-rebase": "^0.4.0",
     "postcss-calc": "^5.2.0",
     "postcss-css-variables": "^0.5.1",
     "postcss-custom-properties": "^5.0.0",

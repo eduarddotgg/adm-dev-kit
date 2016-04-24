@@ -2,11 +2,11 @@ var gulp			 = require('gulp');
 var $	 			 = require('gulp-load-plugins')();
 var watch			 = require('gulp-watch');
 var path			 = require('path');
-var runSequence	     = require('run-sequence');
+var runSequence		 = require('run-sequence');
 var args			 = require('yargs').argv;
 var pngquant		 = require('imagemin-pngquant');
 var inlineImagePath  = require('gulp-inline-image-path');
-var htmlreplace      = require('gulp-html-replace');
+var htmlreplace		 = require('gulp-html-replace');
 
 
 // ENV
@@ -26,22 +26,23 @@ var fontsFolder		 = '/' + assetsFolder + 'fonts/';
 
 
 // POSTHTML PLUGINS
-var posthtmlBem	     = require('posthtml-bem');
+var posthtmlBem		 = require('posthtml-bem');
 
 // POSTCSS PLUGINS
 var postcssImport	 = require('postcss-import');
-var nested		     = require('postcss-nested');
+var nested			 = require('postcss-nested');
 var cssvariables	 = require('postcss-css-variables');
 var vars			 = require('postcss-simple-vars');
-var minmax		     = require('postcss-media-minmax');
-var mscale		     = require('postcss-modular-scale');
+var minmax			 = require('postcss-media-minmax');
+var mscale			 = require('postcss-modular-scale');
 var grid			 = require('postcss-simple-grid');
-var pxtorem		     = require('postcss-pxtorem');
+var pxtorem			 = require('postcss-pxtorem');
 var customProperties = require('postcss-custom-properties');
 var font			 = require('postcss-font-magician');
 var autoprefixer	 = require('autoprefixer');
-var cssnano		     = require('cssnano');
+var cssnano			 = require('cssnano');
 var query			 = require('css-mqpacker');
+var rebaser			 = require("postcss-assets-rebase")
 
 
 // COMPONENTS
@@ -64,9 +65,10 @@ gulp.task('components', function(){
 		, mscale
 		, cssvariables
 		, grid({separator: '--'})
-		// , url({
-		// 	url: "rebase" // or "inline" or "copy"
-		// })
+		, rebaser({
+			assetsPath: "../img",
+			relative: true
+		})
 		, font
 	];
 
