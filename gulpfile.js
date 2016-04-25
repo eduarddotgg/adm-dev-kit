@@ -42,7 +42,8 @@ var font			 = require('postcss-font-magician');
 var autoprefixer	 = require('autoprefixer');
 var cssnano			 = require('cssnano');
 var query			 = require('css-mqpacker');
-var rebaser			 = require("postcss-assets-rebase")
+var rebaser			 = require("postcss-assets-rebase");
+var csso 			 = require('postcss-csso');
 
 
 // COMPONENTS
@@ -80,7 +81,8 @@ gulp.task('components', function(){
 			mediaQuery: true
 		})
 		, query({sort: true})
-		, cssnano
+		, csso
+		// , cssnano
 	];
 
 	return gulp.src(src + '/*.jade')
