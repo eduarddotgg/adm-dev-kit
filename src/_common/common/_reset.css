@@ -1,12 +1,24 @@
-/*RESET DEFAULTS*/
-
 :root {
-	--ms-bases: 1, 0.6;
+	--ms-bases: 1, .6;
 	--ms-ratios: 1.414;
 }
 
-html {
+* {
 	box-sizing: border-box;
+	margin: 0;
+	outline: none;
+	padding: 0;
+}
+
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+*:active,
+*:focus,
+*:hover {
+	outline: none;
 }
 
 html,
@@ -24,27 +36,6 @@ body {
 	font-weight: $fontWeight;
 	line-height: $lineHeight;
 	text-size-adjust: none;
-}
-
-* {
-	box-sizing: inherit;
-	margin: 0;
-	padding: 0;
-	user-select: none;
-	-webkit-tap-highlight-color: rgba(255,255,255,0);
-    -webkit-tap-highlight-color: transparent;
-}
-
-*:before,
-*:after {
-	box-sizing: inherit;
-}
-
-*,
-*:active,
-*:focus,
-*:hover {
-	outline: none;
 }
 
 img {
