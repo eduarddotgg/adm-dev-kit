@@ -7,10 +7,15 @@
 #### ADM DEV KIT - Component Driven Static Website Development Tool.
 
 ##### Built with:
-[ExpressJS](https://github.com/expressjs/express/)  
-[Jade](https://github.com/jadejs/jade) + [PostHTML](https://github.com/posthtml/posthtml)  
-[PostCSS](https://github.com/postcss/postcss)  
-[Gulp](https://github.com/gulpjs/gulp)
+- [Express](https://github.com/strongloop/express)
+- [Gulp](https://github.com/gulpjs/gulp) 
+- [Browser-Sync](https://github.com/BrowserSync/browser-sync) comming soon
+- [Jade](https://github.com/jadejs/jade)
+- [PostHTML](https://github.com/posthtml/posthtml)
+- [PostCSS](https://github.com/postcss/postcss)
+- Basic PostCSS plugins.
+- [MY IP UI](https://github.com/admdh/my-ip-ui)
+- Basic css style for default html tags;
 
 
 
@@ -31,19 +36,6 @@ As You can see on the image below all components and it's depependencies are gro
 .  
 
 
-  
-    
-      
-## What's inside?
-- [Gulp](https://github.com/gulpjs/gulp) as task runner (already includes tasks for minifying JS and CSS);
-- [Express](https://github.com/strongloop/express) for serving static files;
-- [Browser-Sync](https://github.com/BrowserSync/browser-sync) for sync browsing and browser refreshing;
-- [Jade](https://github.com/jadejs/jade) as template language;
-- [PostHTML-BEM](https://github.com/rajdee/posthtml-bem) for BEM naming structure;
-- [PostCSS](https://github.com/postcss/postcss) as main pre/postprocessor for CSS;
-- Basic PostCSS plugins.
-- [MY IP UI](https://github.com/admdh/my-ip-ui) Custom built Qr-Code UI for easy sharing URL with external devices.
-- Basic css style for default html tags;
 
 ## Quick Start
 Clone/fork or just download repository and install all node dependencies: 
