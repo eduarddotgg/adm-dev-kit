@@ -39,7 +39,7 @@
     "browser-sync": "^2.11.1",
     "connect-browser-sync": "^2.0.1",
     "console-stamp": "^0.2.0",
-    "css-mqpacker": "^4.0.0",
+    "css-mqpacker": "^5.0.0",
     "cssnano": "^3.5.2",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
