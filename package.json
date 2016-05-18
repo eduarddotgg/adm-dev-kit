@@ -77,7 +77,7 @@
     "postcss-nested": "^1.0.0",
     "postcss-pxtorem": "^3.3.1",
     "postcss-simple-grid": "^0.7.1",
-    "postcss-simple-vars": "^1.2.0",
+    "postcss-simple-vars": "^2.0.0",
     "posthtml-bem": "^0.2.2",
     "posthtml-w3c": "^0.8.1",
     "run-sequence": "^1.1.5",
