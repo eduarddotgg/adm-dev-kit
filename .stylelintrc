@@ -26,7 +26,7 @@
 		"declaration-colon-space-after": "always",
 		"declaration-colon-space-before": "never",
 		"declaration-no-important": true,
-		"font-family-name-quotes": "single-unless-keyword",
+		"font-family-name-quotes": "always-unless-keyword",
 		"indentation": "tab",
 		"max-empty-lines": 4,
 		"max-nesting-depth": 2,

@@ -82,7 +82,6 @@ gulp.task('components', function(){
 		})
 		, query({sort: true})
 		, csso
-		// , cssnano
 	];
 
 	return gulp.src(src + '/*.jade')

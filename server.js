@@ -86,14 +86,14 @@ server.use(express.static(path.join(__dirname, views)));
 // FAVICON
 server.use(favicon(path.join(__dirname, src, 'favicon.ico')));
 
-// PostHTML with Jade
-server.engine('jade', function (path, options, callback) {
+// PostHTML with pug
+server.engine('pug', function (path, options, callback) {
 	// PostHTML plugins
 	var plugins = [
 		posthtmlW3C()
 	];
 
-	var html = require('jade').renderFile(path, options);
+	var html = require('pug').renderFile(path, options);
 
 	posthtml(plugins)
 		.process(html)
@@ -109,7 +109,7 @@ server.engine('jade', function (path, options, callback) {
 			}
 		});
 });
-server.set('view engine', 'jade');
+server.set('view engine', 'pug');
 server.set('view cache', false);
 
 
