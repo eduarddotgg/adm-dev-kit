@@ -1,10 +1,10 @@
 table {
 	background: #fff;
-	border: solid 1px $dividerColor;
+	border: solid 1px var(--divider-color);
 	border-collapse: collapse;
-	font-family: $fontFamily;
-	font-size: $fontSize;
-	line-height: $lineHeight;
+	font-family: var(--font-family);
+	font-size: ms(1)rem;
+	line-height: var(--line-height);
 	margin: 0;
 	width: 100%;
 }
@@ -19,19 +19,19 @@ caption {
 
 thead,
 tfoot {
-	background: $bodySecondaryColor;
+	background: var(--body-secondary-color);
 	font-weight: bold;
 }
 
 tr {
-	border: solid 1px $dividerColor;
+	border: solid 1px var(--divider-color);
 
 	&:nth-child(even) {
-		background: $tableRowEvenColor;
+		background: var(--table-row-even-color);
 	}
 
 	&:nth-child(odd) {
-		background: $tableRowOddColor;
+		background: var(--table-row-odd-color);
 	}
 }
 

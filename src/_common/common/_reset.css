@@ -1,8 +1,3 @@
-:root {
-	--ms-bases: 1, .6;
-	--ms-ratios: 1.414;
-}
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -29,12 +24,12 @@ body {
 }
 
 body {
-	background: $bodyPrimaryColor;
-	color: $typePrimaryColor;
-	font-family: $fontFamily;
-	font-size: $fontSize;
-	font-weight: $fontWeight;
-	line-height: $lineHeight;
+	background: var(--body-primary-color);
+	color: var(--type-primary-color);
+	font-family: var(--font-family);
+	font-size: ms(1)rem;
+	font-weight: var(--font-weight);
+	line-height: var(--line-height);
 	text-size-adjust: none;
 }
 

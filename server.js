@@ -30,34 +30,30 @@ var posthtmlW3C       = require('posthtml-w3c');
 var postcssMiddleware = require('postcss-middleware');
 var autoprefixer      = require('autoprefixer');
 var nested            = require('postcss-nested');
-var vars              = require('postcss-simple-vars');
+var vars              = require('postcss-css-variables');
 var minmax            = require('postcss-media-minmax');
+var customMedia       = require("postcss-custom-media");
 var mscale            = require('postcss-modular-scale');
 var grid              = require('postcss-simple-grid');
 var stylelint         = require("stylelint");
 var reporter          = require("postcss-reporter");
+var cssInject         = require("postcss-inject");
 
 // PostCSS Settings
-var cssVariables   = path.join(__dirname, src, '_cssVariables.js');
 var postcssPlugins = [
 	stylelint({
 		configFile: './.stylelintrc'
-	}),
-	reporter({clearMessages: true})
-	, vars({
-		// Update variables whithout server restart.
-		variables: function(){
-			delete require.cache[require.resolve(cssVariables)];
-			return require(cssVariables);
-		},
-		silent: true,
-		unknown: function (node, name, result) {
-			node.warn(result, 'Unknown variable ' + name);
-		}
 	})
+	, reporter({clearMessages: true})
+	, cssInject({
+		injectTo: '',
+		cssFilePath: 'src/_css-variables.css'
+	})
+	, mscale
+	, vars
 	, nested
 	, minmax
-	, mscale
+	, customMedia
 	, grid({separator: '--'})
 	, autoprefixer
 ];

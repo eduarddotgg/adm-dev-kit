@@ -4,20 +4,20 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $fontFamily;
+	font-family: var(--font-family);
 	font-weight: bold;
-	line-height: $lineHeight;
-	margin: $margin;
+	line-height: var(--line-height);
+	margin: 0 0 20px;
 }
 
 h1 {
 	font-size: ms(5)rem;
 
-	@media $medium {
+	@media (--small) {
 		font-size: ms(6)rem;
 	}
 
-	@media $large {
+	@media (--large) {
 		font-size: ms(7)rem;
 	}
 }
@@ -25,11 +25,11 @@ h1 {
 h2 {
 	font-size: ms(4)rem;
 
-	@media $medium {
+	@media (--medium) {
 		font-size: ms(5)rem;
 	}
 
-	@media $large {
+	@media var(--large) {
 		font-size: ms(6)rem;
 	}
 }
@@ -37,11 +37,11 @@ h2 {
 h3 {
 	font-size: ms(3)rem;
 
-	@media $medium {
+	@media (--medium) {
 		font-size: ms(4)rem;
 	}
 
-	@media $large {
+	@media (--large) {
 		font-size: ms(5)rem;
 	}
 }
@@ -49,11 +49,11 @@ h3 {
 h4 {
 	font-size: ms(2)rem;
 
-	@media $medium {
+	@media (--medium) {
 		font-size: ms(3)rem;
 	}
 
-	@media $large {
+	@media (--large) {
 		font-size: ms(4)rem;
 	}
 }
@@ -61,11 +61,11 @@ h4 {
 h5 {
 	font-size: ms(1)rem;
 
-	@media $medium {
+	@media (--medium) {
 		font-size: ms(2)rem;
 	}
 
-	@media $large {
+	@media (--large) {
 		font-size: ms(3)rem;
 	}
 }
@@ -73,20 +73,20 @@ h5 {
 h6 {
 	font-size: ms(1)rem;
 
-	@media $medium {
+	@media (--medium) {
 		font-size: ms(1.5)rem;
 	}
 
-	@media $large {
+	@media (--large) {
 		font-size: ms(2.5)rem;
 	}
 }
 
 p {
-	font-family: $fontFamily;
+	font-family: var(--font-family);
 	font-size: ms(1)rem;
-	line-height: $lineHeight;
-	margin: $margin;
+	line-height: var(--line-height);
+	margin: 0 0 20px;
 
 	&:last-child{
 		margin: 0;
@@ -94,14 +94,14 @@ p {
 }
 
 a {
-	color: $primaryColor;
+	color: var(--primary-color);
 	cursor: pointer;
 	text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-	color: $typePrimaryColor;
+	color: var(--type-primary-color);
 }
 
 small {
@@ -115,14 +115,14 @@ acronym {
 
 blockquote {
 	background: none;
-	border-left: solid 1px $dividerColor;
-	margin: $margin;
+	border-left: solid 1px var(--divider-color);
+	margin: 0 0 20px;
 	padding: 10px 20px;
 
 }
 
 cite {
-	color: $typeSecondaryColor;
+	color: var(--type-secondary-color);
 }
 
 cite:before {
@@ -130,22 +130,22 @@ cite:before {
 }
 
 code {
-	background: $bodySecondaryColor;
-	border-radius: $radius;
+	background: var(--body-secondary-color);
+	border-radius: var(--border-radius);
 	padding: 2px 4px;
 }
 
 hr {
 	border: none;
-	border-bottom: solid 1px $dividerColor;
+	border-bottom: solid 1px var(--divider-color);
 	margin: 20px 0;
 }
 
 ul,
 ol {
-	font-family: $fontFamily;
-	line-height: $lineHeight;
-	margin: $margin;
+	font-family: var(--font-family);
+	line-height: var(--line-height);
+	margin: 0 0 20px;
 	padding: 0 0 0 30px;
 
 	ul,
@@ -159,9 +159,9 @@ ol {
 }
 
 dl {
-	font-family: $fontFamily;
-	line-height: $lineHeight;
-	margin: ma(margin);
+	font-family: var(--font-family);
+	line-height: var(--line-height);
+	margin: 0 0 20px;
 	padding: 0;
 
 	dt {

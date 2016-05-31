@@ -6,7 +6,7 @@
 	create-column: 40px;
 }
 
-@media $small {
+@media (--small) {
 	.s {
 		create-grid: 12;
 	}
@@ -16,7 +16,7 @@
 	}
 }
 
-@media $medium {
+@media (--medium) {
 	.m {
 		create-grid: 12;
 	}
@@ -26,7 +26,7 @@
 	}
 }
 
-@media $large {
+@media (--large) {
 	.l {
 		create-grid: 12;
 	}

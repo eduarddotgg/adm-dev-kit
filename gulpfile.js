@@ -32,60 +32,56 @@ var posthtmlBem		 = require('posthtml-bem');
 var postcssImport	 = require('postcss-import');
 var nested			 = require('postcss-nested');
 var cssvariables	 = require('postcss-css-variables');
-var vars			 = require('postcss-simple-vars');
 var minmax			 = require('postcss-media-minmax');
 var mscale			 = require('postcss-modular-scale');
 var grid			 = require('postcss-simple-grid');
 var pxtorem			 = require('postcss-pxtorem');
+var customMedia      = require("postcss-custom-media");
 var customProperties = require('postcss-custom-properties');
 var font			 = require('postcss-font-magician');
 var autoprefixer	 = require('autoprefixer');
-var cssnano			 = require('cssnano');
 var query			 = require('css-mqpacker');
 var rebaser			 = require("postcss-assets-rebase");
 var csso 			 = require('postcss-csso');
+var cssInject		 = require("postcss-inject");
 
+
+// POSTCSS PLUGINS SETTINGS
+var processors = [
+	postcssImport
+	, cssInject({
+		injectTo: '',
+		cssFilePath: 'src/_css-variables.css'
+	})
+	, minmax
+	, customMedia
+	, nested
+	, mscale
+	, cssvariables
+	, grid({separator: '--'})
+	, rebaser({
+		assetsPath: "../img",
+		relative: true
+	})
+	, font
+];
+
+var postprocess = [
+	autoprefixer
+	, customProperties
+	, pxtorem({
+		propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing', 'margin', 'padding'],
+		mediaQuery: true
+	})
+	, query({sort: true})
+	, csso
+];
 
 // COMPONENTS
 gulp.task('components', function(){
-	// POSTCSS PLUGINS SETTINGS
-	var processors = [
-		postcssImport
-		, vars({
-			variables: function(){
-				delete require.cache[require.resolve('./' + src + '/_cssVariables.js')];
-				return require('./' + src + '/_cssVariables.js');
-			},
-			silent: true,
-			unknown: function (node, name, result) {
-				node.warn(result, 'Unknown variable ' + name);
-			}
-		})
-		, minmax
-		, nested
-		, mscale
-		, cssvariables
-		, grid({separator: '--'})
-		, rebaser({
-			assetsPath: "../img",
-			relative: true
-		})
-		, font
-	];
 
-	var postprocess = [
-		autoprefixer
-		, customProperties
-		, pxtorem({
-			propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing', 'margin', 'padding'],
-			mediaQuery: true
-		})
-		, query({sort: true})
-		, csso
-	];
-
-	return gulp.src(src + '/*.jade')
-		.pipe($.foreach(function(stream, file){
+	return gulp.src(src + '/*.pug')
+		.pipe($.flatmap(function(stream, file){
 
 			// BASE FILE NAME
 			var name = path.basename(file.path);
@@ -102,7 +98,7 @@ gulp.task('components', function(){
 			return stream
 
 			// JADE 2 HTML
-			.pipe($.jade())
+			.pipe($.pug())
 			.pipe($.posthtml([
 				posthtmlBem({
 					elemPrefix: '__',

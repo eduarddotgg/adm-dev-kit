@@ -1,13 +1,13 @@
 form {
-	font-family: $fontFamily;
-	margin: $margin;
+	font-family: var(--font-family);
+	margin: 0 0 20px;
 	width: 100%;
 }
 
 fieldset {
 	appearance: none;
-	border: solid 1px $dividerColor;
-	border-radius: $radius;
+	border: solid 1px var(--divider-color);
+	border-radius: var(--border-radius);
 	min-width: 0;
 	padding: 20px;
 	width: 100%;
@@ -15,7 +15,7 @@ fieldset {
 
 label,
 legend {
-	font-size: $fontSize;
+	font-size: ms(1)rem;
 	font-weight: bold;
 	margin: 0;
 }
@@ -23,9 +23,9 @@ legend {
 input {
 	appearance: none;
 	background: #fff;
-	border-radius: $radius;
-	border: solid 1px $dividerColor;
-	font-size: $fontSize;
+	border-radius: var(--border-radius);
+	border: solid 1px var(--divider-color);
+	font-size: ms(1)rem;
 	font-weight: normal;
 	padding: 8px;
 	transition: all .1s ease-in-out;
@@ -33,7 +33,7 @@ input {
 }
 
 input:focus{
-	border-color: $dividerDarkenColor;
+	border-color: var(--divider-darken-color);
 }
 
 input[type="number"] {
@@ -48,9 +48,9 @@ input[type="number"]::-webkit-outer-spin-button {
 button,
 input[type="button"],
 input[type="submit"] {
-	background: $primaryColor;
+	background: var(--primary-color);
 	border: none;
-	border-radius: $radius;
+	border-radius: var(--border-radius);
 	color: #fff;
 	cursor: pointer;
 	display: block;
@@ -63,15 +63,15 @@ input[type="submit"] {
 input[type="button"]:hover,
 input[type="button"]:focus,
 input[type="submit"]:hover,
-input[type="submit"]:focus{
-	background: $typePrimaryColor;
+input[type="submit"]:focus {
+	background: var(--type-primary-color);
 }
 
 textarea {
 	background: #fff;
-	border-radius: $radius;
-	border: solid 1px $dividerColor;
-	font-size: $fontSize;
+	border-radius: var(--border-radius);
+	border: solid 1px var(--divider-color);
+	font-size: ms(1)rem;
 	padding: 8px;
 	min-height: 150px;
 	resize: none;
