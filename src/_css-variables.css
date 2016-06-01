@@ -1,3 +1,4 @@
+/* stylelint-disable */
 :root {
 	--ms-bases: 1, .6;
 	--ms-ratios: 1.414;
@@ -47,3 +48,4 @@
 @custom-media --xlarge (width >= 1440px);
 @custom-media --xlarge-down (width <= 1919px);
 @custom-media --xlarge-only (width >= 1440px and width <= 1919px);
+/* stylelint-enable */

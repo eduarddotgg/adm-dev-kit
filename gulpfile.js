@@ -44,6 +44,8 @@ var query			 = require('css-mqpacker');
 var rebaser			 = require("postcss-assets-rebase");
 var csso 			 = require('postcss-csso');
 var cssInject		 = require("postcss-inject");
+var stylelint		 = require("stylelint");
+var reporter		 = require("postcss-reporter");
 
 
 // POSTCSS PLUGINS SETTINGS
@@ -79,7 +81,6 @@ var postprocess = [
 
 // COMPONENTS
 gulp.task('components', function(){
-
 	return gulp.src(src + '/*.pug')
 		.pipe($.flatmap(function(stream, file){
 
@@ -150,10 +151,13 @@ gulp.task('img', function(){
 		.pipe(gulp.dest(dest + imgFolder));
 });
 
+
+// FAVICON
 gulp.task('favicon', function(){
 	return gulp.src(src + '/favicon.ico')
 		.pipe(gulp.dest(dest));
 });
+
 
 // FONTS
 gulp.task('fonts', function(){
@@ -163,7 +167,46 @@ gulp.task('fonts', function(){
 });
 
 
+// LINT JS
+gulp.task('lintJS', function(){
+	return gulp.src([src + '/**/*.js', '!' + src + '/jspm_packages/**/*.js', '!' + src + '/config.js'])
+		.pipe($.eslint({
+			configFile: './.eslintrc'
+		}))
+
+		.pipe($.eslint.result(function (result) {
+			// Called for each ESLint result.
+			console.log('ESLint result: ' + result.filePath);
+			console.log('# Messages: ' + result.messages.length);
+			console.log('# Warnings: ' + result.warningCount);
+			console.log('# Errors: ' + result.errorCount);
+		}))
+		.pipe($.eslint.format())
+		.pipe($.eslint.failOnError());
+});
+
+// LINT CSS
+gulp.task('lintCSS', function(){
+	return gulp.src([src + '/**/*.css'])
+		.pipe($.postcss([
+			stylelint({
+				configFile: './.stylelintrc'
+			})
+			, reporter({
+				clearMessages: true,
+				throwError: true
+			})
+		]))
+});
+
+
 // GULP DEFAULT TASK
 gulp.task('default', function(callback){
 	runSequence('components', ['img', 'favicon', 'fonts'], callback)
+});
+
+
+// GULP LINT TASKS
+gulp.task('lint', function(callback){
+	runSequence('lintJS', 'lintCSS', callback)
 });

@@ -10,8 +10,10 @@
   "bsportUI": 3011,
   "scripts": {
     "start": "node server.js",
-    "build": "gulp"
+    "build": "gulp",
+    "lint": "gulp lint"
   },
+  "precommit": "lint",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -31,7 +33,6 @@
     "pug",
     "posthtml",
     "postcss",
-    "css framework",
     "ADM DESIGNHOUSE"
   ],
   "dependencies": {
@@ -82,5 +83,22 @@
     "serve-favicon": "^2.3.0",
     "stylelint": "^6.5.1",
     "yargs": "^4.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.11.1",
+    "gulp-eslint": "^2.0.0",
+    "jspm": "^0.16.36",
+    "pre-commit": "^1.1.3"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "src"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   }
 }

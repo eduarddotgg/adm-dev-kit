@@ -22,7 +22,7 @@ var openURL           = host; // host or myip()
 
 
 // PostHTML Plugins
-var posthtml          = require ('posthtml');
+var posthtml          = require('posthtml');
 var posthtmlW3C       = require('posthtml-w3c');
 
 
@@ -114,6 +114,12 @@ server.use('/*.css', postcssMiddleware({
 	src: function(req) { return path.join(__dirname, src, req.originalUrl); },
 	plugins: postcssPlugins
 }));
+
+// Serving JS
+server.get(['/*.js'], function(req, res){
+	var jsFile = fs.readFileSync(path.join(__dirname, src, req.originalUrl));
+	res.end(jsFile);
+});
 
 
 // Serving "Index Page"
