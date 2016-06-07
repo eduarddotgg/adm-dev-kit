@@ -27,6 +27,7 @@ var fontsFolder		 = '/' + assetsFolder + 'fonts/';
 
 // POSTHTML PLUGINS
 var posthtmlBem		 = require('posthtml-bem');
+var jspmConfig		 = require('posthtml-jspm-config-generator');
 
 // POSTCSS PLUGINS
 var postcssImport	 = require('postcss-import');
@@ -92,7 +93,8 @@ gulp.task('components', function(){
 			var cssFilePath = 'assets/css/';
 
 			// JS
-			var jsFileName = name.replace(/\.[^.]*$/i, '.min.js');
+			var jsFileName = name.replace(/\.[^.]*$/i, '.js');
+			var jspmFileName = name.replace(/\.[^.]*$/i, '.jspm.js');
 			var jsFilePath = 'assets/js/';
 
 			// RETURN STREAM
@@ -105,15 +107,14 @@ gulp.task('components', function(){
 					elemPrefix: '__',
 					modPrefix: '_',
 					modDlmtr: '--'
+				}),
+				jspmConfig({
+					outputPath: './src/_' + jspmFileName
 				})
 			]))
 
 			// EXTRACT JS AND CSS
 			.pipe($.resources())
-
-			// JS
-			.pipe($.if('**/*.js', $.concat(jsFolder + jsFileName)))
-			.pipe($.if(jsFolder + '*.js', $.uglify()))
 
 			// CSS
 			.pipe($.if('**/*.css', $.postcss(processors,{
@@ -134,6 +135,21 @@ gulp.task('components', function(){
 			.pipe(inlineImagePath({path:"assets/img"}))
 		}))
 		.pipe(gulp.dest(dest));
+});
+
+
+// JSPM
+gulp.task('jspm', function(){
+	return gulp.src(src + '/*.jspm.js')
+		.pipe($.jspm({
+			minify: true,
+			selfExecutingBundle: true
+		}))
+		.pipe($.rename(function (path) {
+			path.basename = path.basename.replace('.bundle.jspm', '');
+			path.basename = path.basename.replace('_', '');
+		}))
+		.pipe(gulp.dest('dest/assets/js'));
 });
 
 
@@ -169,7 +185,7 @@ gulp.task('fonts', function(){
 
 // LINT JS
 gulp.task('lintJS', function(){
-	return gulp.src([src + '/**/*.js', '!' + src + '/jspm_packages/**/*.js', '!' + src + '/config.js'])
+	return gulp.src([src + '/**/*.js', '!' + src + '/jspm_packages/**/*.js', '!' + src + '/config.js', '!' + src + '/**/*.jspm.js'])
 		.pipe($.eslint({
 			configFile: './.eslintrc'
 		}))
@@ -201,12 +217,8 @@ gulp.task('lintCSS', function(){
 
 
 // GULP DEFAULT TASK
-gulp.task('default', function(callback){
-	runSequence('components', ['img', 'favicon', 'fonts'], callback)
-});
+gulp.task('default', ['components', 'jspm', 'img', 'favicon', 'fonts']);
 
 
 // GULP LINT TASKS
-gulp.task('lint', function(callback){
-	runSequence('lintJS', 'lintCSS', callback)
-});
+gulp.task('lint', ['lintJS', 'lintCSS']);

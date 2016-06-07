@@ -2,3 +2,4 @@
 node_modules
 jspm_packages
 dest
+src/*.jspm.js
