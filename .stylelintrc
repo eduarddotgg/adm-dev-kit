@@ -42,7 +42,7 @@
 		"no-eol-whitespace": true,
 		"number-max-precision": 5,
 		"number-no-trailing-zeros": true,
-		"number-zero-length-no-unit": true,
+		"length-zero-no-unit": true,
 		"property-no-vendor-prefix": true,
 		"rule-non-nested-empty-line-before": "always",
 		"selector-combinator-space-after": "always",

@@ -1,13 +1,10 @@
 var express           = require('express');
 var server            = express();
-var morgan            = require('morgan');
 var fs                = require('fs');
 var path              = require('path');
-var open              = require("open");
+var open              = require('open');
 var pjson             = require('./package.json');
 var myipui            = require('my-ip-ui');
-// var timeStamp      = require("console-stamp")(console, { pattern : "HH:MM:ss", label: false});
-var dateFormat        = require('dateformat');
 var myip              = require('my-ip');
 var favicon           = require('serve-favicon');
 
@@ -32,47 +29,39 @@ var autoprefixer      = require('autoprefixer');
 var nested            = require('postcss-nested');
 var vars              = require('postcss-css-variables');
 var minmax            = require('postcss-media-minmax');
-var customMedia       = require("postcss-custom-media");
+var customMedia       = require('postcss-custom-media');
 var mscale            = require('postcss-modular-scale');
 var grid              = require('postcss-simple-grid');
-var stylelint         = require("stylelint");
-var reporter          = require("postcss-reporter");
-var cssInject         = require("postcss-inject");
+var stylelint         = require('stylelint');
+var reporter          = require('postcss-reporter');
+var cssInject         = require('postcss-inject');
 
 // PostCSS Settings
 var postcssPlugins = [
 	stylelint({
 		configFile: './.stylelintrc'
-	})
-	, reporter({clearMessages: true})
-	, cssInject({
+	}),
+	reporter({
+		clearMessages: true
+	}),
+	cssInject({
 		injectTo: '',
 		cssFilePath: 'src/_css-variables.css'
-	})
-	, mscale
-	, vars
-	, nested
-	, minmax
-	, customMedia
-	, grid({separator: '--'})
-	, autoprefixer
+	}),
+	mscale,
+	vars,
+	nested,
+	minmax,
+	customMedia,
+	grid({
+		separator: '--'
+	}),
+	autoprefixer
 ];
 
 
 // Injecting QR-Code to every served page
 server.use(myipui({ port: port }));
-
-
-// Time
-function getTime(){
-	var now = new Date();
-	var time = '[' + dateFormat(now, "hh:MM:ss") + ']';
-	return time;
-}
-
-// Express Log
-// morgan.token("showTime", function (req, res) { return getTime() });
-// server.use(morgan(':showTime :method :status :url :response-time ms'));
 
 
 // Static, Views
@@ -92,18 +81,18 @@ server.engine('pug', function (path, options, callback) {
 	var html = require('pug').renderFile(path, options);
 
 	posthtml(plugins)
-		.process(html)
-		.then(function (result) {
-			if (typeof callback === 'function') {
-				var res;
-				try {
-					res = result.html;
-				} catch (ex) {
-					return callback(ex);
-				}
-				return callback(null, res);
+	.process(html)
+	.then(function (result) {
+		if (typeof callback === 'function') {
+			var res;
+			try {
+				res = result.html;
+			} catch (ex) {
+				return callback(ex);
 			}
-		});
+			return callback(null, res);
+		}
+	});
 });
 server.set('view engine', 'pug');
 server.set('view cache', false);
@@ -111,36 +100,41 @@ server.set('view cache', false);
 
 // PostCSS Middleware
 server.use('/*.css', postcssMiddleware({
-	src: function(req) { return path.join(__dirname, src, req.originalUrl); },
-	plugins: postcssPlugins
+	src: function (req) {
+		return path.join(__dirname, src, req.originalUrl);
+	},
+	plugins: postcssPlugins,
+	options: {
+		map: { inline: true }
+	}
 }));
 
 // Serving JS
-server.get(['/*.js'], function(req, res){
+server.get(['/*.js'], function (req, res) {
 	var jsFile = fs.readFileSync(path.join(__dirname, src, req.originalUrl));
 	res.end(jsFile);
 });
 
 
-// Serving "Index Page"
+// Serving Index Page
 server.get('/', function (req, res) {
 	res.render('index');
 });
 
-// Serving "Other Pages"
+// Serving Other Pages
 server.get('/:pageUrl', function (req, res) {
 	res.render(req.params.pageUrl);
 });
 
 // Serving Images
-server.get(['/*.ico', '/*.jpeg', '/*.jpg', '/*.png', '/*.svg'], function(req, res){
+server.get(['/*.ico', '/*.jpeg', '/*.jpg', '/*.png', '/*.svg'], function (req, res) {
 	var img = fs.readFileSync(path.join(__dirname, src, req.originalUrl));
 	res.end(img);
 });
 
 
 // Listen Port
-server.listen(port, function(res, req){
+server.listen(port, function () {
 	console.log('-----------------------------------------------------------------');
 	console.log('DEV KIT - Component Driven Static Website Development Tool');
 	console.log('-----------------------------------------------------------------');
