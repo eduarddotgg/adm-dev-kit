@@ -1,4 +1,4 @@
-<img title="Dev Kit" src="http://adm-designhouse.com/adm-dev-kit.png">  
+<img title="Dev Kit" src="_dev-kit-logo.svg">  
 # ADM DEV KIT 2.0
 [![Join the chat at https://gitter.im/admdh/adm-dev-kit](https://badges.gitter.im/admdh/adm-dev-kit.svg)](https://gitter.im/admdh/adm-dev-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
   
@@ -6,57 +6,73 @@
       
 #### ADM DEV KIT - Component Driven Static Website Development Tool.
 
-##### Built with:
-- [Express](https://github.com/strongloop/express)
-- [Gulp](https://github.com/gulpjs/gulp) 
-- [Browser-Sync](https://github.com/BrowserSync/browser-sync) comming soon
-- [Jade](https://github.com/jadejs/jade)
-- [PostHTML](https://github.com/posthtml/posthtml)
-- [PostCSS](https://github.com/postcss/postcss)
-- Basic PostCSS plugins.
-- [MY IP UI](https://github.com/admdh/my-ip-ui)
-- Basic css style for default html tags;
+## Documentation
+- Introduction (coming soon)
+- Installation (coming soon)
+- Configuration (coming soon)
+- Getting started (coming soon)
+- Examples (coming soon)
 
 
+## Quick guide
 
-## Idea.
-Over the past few years front-end is developing rapidly. Component driven development became very popular. Component drive development helps to keep project well organized and easy maintainable. There are a lot of different JavaScript frameworks that are component driven and they (JS frameworks) hanlde components pretty well. But the problem is that we still need static websites without html and css inside of JavaScript bundle file. And actully there is still no good way/option to handle components outside of JavaScript. And the main idea of ADM DEV KIT is to  give ability to develop in component driven way outside of JavaScript.
+###### Working Directory
+All project's files are stored in ```/src```.
 
+##### Template Engine.
+Pug (jade) is used as main template engine. You can find out more information about Pug by following this link [https://github.com/pugjs/pug](https://github.com/pugjs/pug).  
 
-## Problem.
-While developing static website all HTML, JS and CSS dependencies are stored in different places and included into different files.
-While developing website or even web app all JS and CSS dependencies often stored in separate folders like it is showed on the image below.
-<img width="1024" height="" title="Dev Kit Main Logo" src="http://adm-designhouse.com/adm-dev-kit--non-modular-dependencies.png">    
-Sometimes it's really hard to maintane components when they similar structure. It's really hard to keep logical and clean structure of component's JS and CSS in different places especially in big projects and teams.
+Example of basic ```index.pug```:
+```jade
+extends _layouts/_main
 
+block title
+	title ADM DEV KIT
 
-## Solution.
-As You can see on the image below all components and it's depependencies are grouped. Every single component and it's dependencies are stored in one place/folder. 
-<img align="right" width="1024" height="" title="Dev Kit Main Logo" src="http://adm-designhouse.com/adm-dev-kit--modular-dependencies.png">  
-.  
-
-
-
-## Quick Start
-Clone/fork or just download repository and install all node dependencies: 
+block content
+	link(href="_common/_common-index.css" type="text/css" rel="stylesheet")
+	script(src="jspm_packages/system.js" type="text/javascript")
+	script(src="config.js" type="text/javascript")
 ```
-$ npm i
+
+##### JS
+JSPM is used as JavaScript manager and bundler. You can find more information about JSPM by following this link [http://jspm.io](http://jspm.io). Every single component has it's own JS file to add it use following syntax::
+```jade
+.component-box
+    .component-box__content
+        ...
+        
+script System.import('component.js') //your components js file
 ```
-Edit package.json:
+IMPORTANT to know path in ```System.import``` should be relative to ```/src``` directory.
+
+##### CSS
+PostCSS is used as main pre/post processor for CSS. You can find more information about JSPM by following this link [https://github.com/postcss/postcss](https://github.com/postcss/postcss). Every single component has it's own CSS file to add it use following syntax:
+```jade
+link(href="component.css" type="text/css" rel="stylesheet")
+.component-box
+    .component-box__content
+        ...
+``` 
+IMPORTANT to know path in ```link(href="...")``` should be relative to ```/src``` directory.
+
+
+##### Configuration
+Some settings can be changed in ```package.json```
+```json
+"host": "adm-dev-kit"
+"port": 3000
 ```
-{
-	...
-	"host": "adm-dev-kit",
-	"port": 3000,
-	...
-}
+
+##### Installing Dependencies
+```js
+npm i       // install all npm pacakges
+jspm i      // install other dependencies
 ```
-Than run:
+
+##### Starting Server
+```js
+npm start
+
+// by default "http://adm-dev-kit:3000" url will be opened in default browser.
 ```
-$ npm start
-```
-It will automaticly open default browser.
-  
-  
-##  
-More documentation is coming soon.

@@ -6,8 +6,6 @@
   "private": true,
   "host": "adm-dev-kit",
   "port": 3000,
-  "bsport": 3010,
-  "bsportUI": 3011,
   "scripts": {
     "start": "node server.js",
     "build": "gulp",
