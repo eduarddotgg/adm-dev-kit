@@ -54,7 +54,7 @@ var processors = [
 	postcssImport
 	, cssInject({
 		injectTo: '',
-		cssFilePath: 'src/_css-variables.css'
+		cssFilePath: 'src/__css-variables.css'
 	})
 	, minmax
 	, customMedia
@@ -185,7 +185,7 @@ gulp.task('fonts', function(){
 
 // LINT JS
 gulp.task('lintJS', function(){
-	return gulp.src([src + '/**/*.js', '!' + src + '/jspm_packages/**/*.js', '!' + src + '/config.js', '!' + src + '/**/*.jspm.js'])
+	return gulp.src([src + '/**/*.js', '!' + src + '/__jspm_packages/**/*.js', '!' + src + '/__jspm-config.js', '!' + src + '/**/*.jspm.js'])
 		.pipe($.eslint({
 			configFile: './.eslintrc'
 		}))

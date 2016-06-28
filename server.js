@@ -46,7 +46,7 @@ var postcssPlugins = [
 	}),
 	cssInject({
 		injectTo: '',
-		cssFilePath: 'src/_css-variables.css'
+		cssFilePath: 'src/__css-variables.css'
 	}),
 	mscale,
 	vars,

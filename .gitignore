@@ -1,5 +1,5 @@
 .idea
 node_modules
-jspm_packages
+__jspm_packages
 dest
 src/*.jspm.js
