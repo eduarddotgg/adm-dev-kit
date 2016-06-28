@@ -8,12 +8,6 @@ var pngquant		 = require('imagemin-pngquant');
 var inlineImagePath  = require('gulp-inline-image-path');
 var htmlreplace		 = require('gulp-html-replace');
 
-
-// ENV
-var isDevelopment	 = args.env === 'development';
-var isProduction	 = args.env === 'production';
-
-//
 var src				 = 'src';
 var dest			 = 'dest';
 
@@ -156,13 +150,11 @@ gulp.task('jspm', function(){
 // IMAGES
 gulp.task('img', function(){
 	return gulp.src([src + '/**/*.jpg', src + '/**/*.jpeg', src + '/**/*.png', src + '/**/*.svg', src + '/**/*.gif'])
-		.pipe($.if(isProduction,
-			$.imagemin({
-				progressive: true,
-				svgoPlugins: [{removeViewBox: false}],
-				use: [pngquant()]
-			})
-		))
+		.pipe($.imagemin({
+			progressive: true,
+			svgoPlugins: [{removeViewBox: false}],
+			use: [pngquant()]
+		}))
 		.pipe($.rename({dirname: ''}))
 		.pipe(gulp.dest(dest + imgFolder));
 });
