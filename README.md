@@ -2,7 +2,8 @@
 # ADM DEV KIT 2.0
 [![Join the chat at https://gitter.im/admdh/adm-dev-kit](https://badges.gitter.im/admdh/adm-dev-kit.svg)](https://gitter.im/admdh/adm-dev-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
 
-#### ADM DEV KIT - is component driven static websited development tool.
+#### What is ADM DEV KIT?
+ADM DEV KIT is component driven static websited development tool. It is built with Node.js, Express.js, Gulp.js, Pug.js, PostHTML, PostCSS and other smaller tools. ADM DEV KIT include preconfigured development environment and build tasks to make development and deployment easier. 
 
 ## Documentation
 - Introduction (coming soon)
