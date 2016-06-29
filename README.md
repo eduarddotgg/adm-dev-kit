@@ -6,14 +6,14 @@
 ADM DEV KIT is component driven static websited development tool. It is built with Node.js, Express.js, Gulp.js, Pug.js, PostHTML, PostCSS and other smaller tools. ADM DEV KIT include preconfigured development environment and build tasks to make development and deployment easier. 
 
 #### Features
-- Component driven development with independent components
-- Easy to start
-- Build and optimization out of box
-- ES6 with JSPM
-- CSS future syntax and features with PostCSS
-- Easy to lint JS and CSS with ESLINT and Stylelint using precommit git hook
-- Common CSS for normalization default html tags out of box
-- MY-IP-UI helps to open project on other devices
+- Component driven development with independent components;
+- Easy to start;
+- Build and optimization (JS and CSS bundling) out of box;
+- ES6 with JSPM;
+- CSS future syntax and features with PostCSS;
+- Easy to lint JS and CSS with ESLINT and Stylelint using precommit git hook;
+- Common CSS for normalization default html tags out of box;
+- MY-IP-UI helps to open project on other devices.
 
 
 ## Documentation
