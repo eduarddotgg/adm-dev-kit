@@ -7,11 +7,13 @@ ADM DEV KIT is component driven static websited development tool. It is built wi
 
 #### Features
 - Component driven development with independent components;
-- Easy to start;
-- Build and optimization (JS and CSS bundling) out of box;
+- Development and build environment;
+- PostHTML for validation to w3c standards;
 - ES6 with JSPM;
-- CSS future syntax and features with PostCSS;
-- Easy to lint JS and CSS with ESLINT and Stylelint using precommit git hook;
+- ESlint;
+- CSS future syntax and future features with PostCSS;
+- Stylelint;
+- Precommit git hook for linting before commit;
 - Common CSS for normalization default html tags out of box;
 - MY-IP-UI helps to open project on other devices;
 - and other...
