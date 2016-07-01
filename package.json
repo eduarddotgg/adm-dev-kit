@@ -96,7 +96,7 @@
       "baseURL": "src",
       "packages": "src/__jspm_packages"
     },
-    "configFile": "src/__jspm-config.js",
+    "configFile": "src/_jspm-config.js",
     "dependencies": {},
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
