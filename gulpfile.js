@@ -174,10 +174,12 @@ gulp.task('fonts', function(){
 		.pipe(gulp.dest(dest + fontsFolder));
 });
 
+var changed = require('gulp-changed');
 
 // LINT JS
 gulp.task('lintJS', function(){
 	return gulp.src([src + '/**/*.js', '!' + src + '/__jspm_packages/**/*.js', '!' + src + '/_jspm-config.js', '!' + src + '/**/*.jspm.js'])
+		.pipe(changed(src + '/**/*.js'))
 		.pipe($.eslint({
 			configFile: './.eslintrc'
 		}))
@@ -196,6 +198,7 @@ gulp.task('lintJS', function(){
 // LINT CSS
 gulp.task('lintCSS', function(){
 	return gulp.src([src + '/**/*.css'])
+		.pipe(changed(src + '/**/*.css'))
 		.pipe($.postcss([
 			stylelint({
 				configFile: './.stylelintrc'
