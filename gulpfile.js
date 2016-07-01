@@ -60,7 +60,7 @@ var processors = [
 	font
 ];
 
-var postprocess = [
+var postProcess = [
 	autoprefixer,
 	customProperties,
 	pxtorem({
@@ -112,14 +112,14 @@ gulp.task('components', function () {
 				to: './dest/assets/css/*.css'
 			})))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
-			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
+			.pipe($.if('assets/css/**/*.css', $.postcss(postProcess)))
 
 			// REPLACE JS AND CSS TAGS
 			.pipe($.replace(/<link href[^>]+?[ ]*>/g, ''))
 			.pipe($.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
 			.pipe(htmlreplace({
-				'css': cssFilePath + cssFileName,
-				'js': jsFilePath + jsFileName
+				css: cssFilePath + cssFileName,
+				js: jsFilePath + jsFileName
 			}))
 
 			//	INLINE IMAGES
