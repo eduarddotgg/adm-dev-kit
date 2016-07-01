@@ -1,9 +1,7 @@
 var gulp			 = require('gulp');
 var $	 			 = require('gulp-load-plugins')();
-var watch			 = require('gulp-watch');
+var changed			 = require('gulp-changed');
 var path			 = require('path');
-var runSequence		 = require('run-sequence');
-var args			 = require('yargs').argv;
 var pngquant		 = require('imagemin-pngquant');
 var inlineImagePath  = require('gulp-inline-image-path');
 var htmlreplace		 = require('gulp-html-replace');
@@ -13,7 +11,6 @@ var dest			 = 'dest';
 
 // ASSETS FOLDERS
 var assetsFolder	 = 'assets/';
-var jsFolder		 = assetsFolder + 'js/';
 var cssFolder		 = assetsFolder + 'css/';
 var imgFolder		 = '/' + assetsFolder + 'img/';
 var fontsFolder		 = '/' + assetsFolder + 'fonts/';
@@ -31,53 +28,53 @@ var minmax			 = require('postcss-media-minmax');
 var mscale			 = require('postcss-modular-scale');
 var grid			 = require('postcss-simple-grid');
 var pxtorem			 = require('postcss-pxtorem');
-var customMedia      = require("postcss-custom-media");
+var customMedia      = require('postcss-custom-media');
 var customProperties = require('postcss-custom-properties');
 var font			 = require('postcss-font-magician');
 var autoprefixer	 = require('autoprefixer');
 var query			 = require('css-mqpacker');
-var rebaser			 = require("postcss-assets-rebase");
+var rebaser			 = require('postcss-assets-rebase');
 var csso 			 = require('postcss-csso');
-var cssInject		 = require("postcss-inject");
-var stylelint		 = require("stylelint");
-var reporter		 = require("postcss-reporter");
+var cssInject		 = require('postcss-inject');
+var stylelint		 = require('stylelint');
+var reporter		 = require('postcss-reporter');
 
 
 // POSTCSS PLUGINS SETTINGS
 var processors = [
-	postcssImport
-	, cssInject({
+	postcssImport,
+	cssInject({
 		injectTo: '',
 		cssFilePath: 'src/_css-variables.css'
-	})
-	, minmax
-	, customMedia
-	, nested
-	, mscale
-	, cssvariables
-	, grid({separator: '--'})
-	, rebaser({
-		assetsPath: "../img",
+	}),
+	minmax,
+	customMedia,
+	nested,
+	mscale,
+	cssvariables,
+	grid({ separator: '--' }),
+	rebaser({
+		assetsPath: '../img',
 		relative: true
-	})
-	, font
+	}),
+	font
 ];
 
 var postprocess = [
-	autoprefixer
-	, customProperties
-	, pxtorem({
+	autoprefixer,
+	customProperties,
+	pxtorem({
 		propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing', 'margin', 'padding'],
 		mediaQuery: true
-	})
-	, query({sort: true})
-	, csso
+	}),
+	query({ sort: true }),
+	csso
 ];
 
 // COMPONENTS
-gulp.task('components', function(){
+gulp.task('components', function () {
 	return gulp.src(src + '/*.pug')
-		.pipe($.flatmap(function(stream, file){
+		.pipe($.flatmap(function (stream, file) {
 
 			// BASE FILE NAME
 			var name = path.basename(file.path);
@@ -111,8 +108,8 @@ gulp.task('components', function(){
 			.pipe($.resources())
 
 			// CSS
-			.pipe($.if('**/*.css', $.postcss(processors,{
-				to: "./dest/assets/css/*.css"
+			.pipe($.if('**/*.css', $.postcss(processors, {
+				to: './dest/assets/css/*.css'
 			})))
 			.pipe($.if('**/*.css', $.concat(cssFolder + cssFileName)))
 			.pipe($.if('assets/css/**/*.css', $.postcss(postprocess)))
@@ -126,14 +123,14 @@ gulp.task('components', function(){
 			}))
 
 			//	INLINE IMAGES
-			.pipe(inlineImagePath({path:"assets/img"}))
+			.pipe(inlineImagePath({ path: 'assets/img' }));
 		}))
 		.pipe(gulp.dest(dest));
 });
 
 
 // JSPM
-gulp.task('jspm', function(){
+gulp.task('jspm', function () {
 	return gulp.src(src + '/*.jspm.js')
 		.pipe($.jspm({
 			minify: true,
@@ -174,7 +171,6 @@ gulp.task('fonts', function(){
 		.pipe(gulp.dest(dest + fontsFolder));
 });
 
-var changed = require('gulp-changed');
 
 // LINT JS
 gulp.task('lintJS', function(){
