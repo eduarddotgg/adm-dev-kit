@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "eslint": "^2.11.1",
-    "gulp-eslint": "^2.0.0",
+    "gulp-eslint": "^3.0.0",
     "jspm": "^0.16.36",
     "pre-commit": "^1.1.3"
   },
