@@ -80,11 +80,11 @@ gulp.task('components', function () {
 			var name = path.basename(file.path);
 
 			// CSS
-			var cssFileName = name.replace(/\.[^.]*$/i, '.css');
+			var cssFileName = name.replace(/\.[^.]*$/i, '.min.css');
 			var cssFilePath = 'assets/css/';
 
 			// JS
-			var jsFileName = name.replace(/\.[^.]*$/i, '.js');
+			var jsFileName = name.replace(/\.[^.]*$/i, '.min.js');
 			var jspmFileName = name.replace(/\.[^.]*$/i, '.jspm.js');
 			var jsFilePath = 'assets/js/';
 
