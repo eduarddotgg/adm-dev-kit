@@ -174,7 +174,7 @@ gulp.task('fonts', function(){
 
 // LINT JS
 gulp.task('lintJS', function(){
-	return gulp.src([src + '/**/*.js', '!' + src + '/__jspm_packages/**/*.js', '!' + src + '/_jspm-config.js', '!' + src + '/**/*.jspm.js'])
+	return gulp.src([ './_server/**/*.js',src + '/**/*.js', '!' + src + '/__jspm_packages/**/*.js', '!' + src + '/_jspm-config.js', '!' + src + '/**/*.jspm.js'])
 		.pipe(changed(src + '/**/*.js'))
 		.pipe($.eslint({
 			configFile: './.eslintrc'

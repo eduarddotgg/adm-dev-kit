@@ -1,8 +1,8 @@
 {
-  "name": "ADM_DEV_KIT",
+  "name": "ADM DEV KIT",
   "version": "2.0.0",
   "author": "Eduárd Pocstár <admdh.com@gmail.com>",
-  "description": "DEV KIT - Component Driven Static Website Development Tool",
+  "description": "Component Driven Static Website Development Tool",
   "private": true,
   "host": "adm-dev-kit",
   "port": 3000,
@@ -35,6 +35,7 @@
   ],
   "dependencies": {
     "autoprefixer": "^6.3.6",
+    "babel-eslint": "^6.1.0",
     "css-mqpacker": "^5.0.1",
     "eslint": "^3.0.0",
     "express": "^4.13.4",

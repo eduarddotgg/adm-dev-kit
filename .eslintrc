@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "rules": {
       "space-before-function-paren": [2, { "named": "never" }],
       "no-shadow-restricted-names":  [2],
@@ -82,7 +83,7 @@
       "quote-props":                 [2, "consistent-as-needed"],
       "no-iterator":                 [2],
       "no-new-func":                 [2],
-      "complexity":                  [2, 40],
+      "complexity":                  [2],
       "new-parens":                  [2],
       "no-eq-null":                  [2],
       "no-bitwise":                  [2],
@@ -101,7 +102,7 @@
       "no-eval":                     [2],
       "no-with":                     [2],
       "no-void":                     [2],
-      "max-len":                     [2, 140],
+      "max-len":                     [2],
       "new-cap":                     [2],
       "eqeqeq":                      [2],
       "no-new":                      [2],
