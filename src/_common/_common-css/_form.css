@@ -32,7 +32,7 @@ input {
 	width: 100%;
 }
 
-input:focus{
+input:focus {
 	border-color: var(--divider-darken-color);
 }
 
