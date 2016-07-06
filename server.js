@@ -5,14 +5,14 @@ const fs 			= require('fs');
 const myip 			= require('my-ip');
 const open 			= require('open');
 
-const serverIP 		= require('./_server/ip/server-ip');
-const serverVIEWS 	= require('./_server/views/server-views');
-const serverROUTES 	= require('./_server/routes/server-routes');
-const serverHTML 	= require('./_server/middlewares/server-html');
-const serverJS 		= require('./_server/middlewares/server-js');
-const serverCSS 	= require('./_server/middlewares/server-css');
-const serverIMG 	= require('./_server/middlewares/server-img');
-const serverLISTEN 	= require('./_server/listen/server-listen');
+const serverIP 		= require('./_server/ip/_server-ip');
+const serverVIEWS 	= require('./_server/views/_server-views');
+const serverROUTES 	= require('./_server/routes/_server-routes');
+const serverHTML 	= require('./_server/middlewares/_server-html');
+const serverJS 		= require('./_server/middlewares/_server-js');
+const serverCSS 	= require('./_server/middlewares/_server-css');
+const serverIMG 	= require('./_server/middlewares/_server-img');
+const serverLISTEN 	= require('./_server/listen/_server-listen');
 
 const pjson 		= require('./package.json');
 const src 			= '../../src';
