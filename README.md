@@ -27,18 +27,28 @@ ADM DEV KIT is component driven static websited development tool. It is built wi
 - Examples (coming soon)
 
 ## Quick start
-Configure host and port in ```package.json```:  
+Install:
 ```js
-"host": "adm-dev-kit"	// Default host
-"port": 3000		// Default port
+npm i --save adm-dev-kit
 ```
-Install dependencies:
+Server:
 ```js
-npm i       // install all npm pacakges
-jspm i      // install other dependencies
+//server.js
+const app = require('adm-dev-kit');
+
+app.server({
+    src: './src',       // working directory
+    views: './views'    // express views folder
+});
+```
+Build: 
+```js
+//gulpfile.js
+const app = require('adm-dev-kit');
+
+app.build({
+    src: './src',       // working directory
+    dest: './dest'      // build directory
+});
 ```
 
-Start server
-```js
-npm start
-```

@@ -36,7 +36,7 @@ const postcssPlugins = [
 module.exports = (server, path, src) => {
 	server.use('/*.css', postcssMiddleware({
 		src: (req) => {
-			return path.join(__dirname, src, req.originalUrl);
+			return path.join(src, req.originalUrl);
 		},
 		plugins: postcssPlugins,
 		options: {
