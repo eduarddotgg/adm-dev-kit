@@ -1,5 +1,5 @@
 <img title="Dev Kit" src="http://adm-designhouse.com/adm-dev-kit-logo.svg">  
-# ADM DEV KIT 2.0
+# ADM DEV KIT 2.5.0
 [![Join the chat at https://gitter.im/admdh/adm-dev-kit](https://badges.gitter.im/admdh/adm-dev-kit.svg)](https://gitter.im/admdh/adm-dev-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
 
 #### What is ADM DEV KIT?
