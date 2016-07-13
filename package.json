@@ -1,6 +1,6 @@
 {
   "name": "adm-dev-kit",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "author": "Eduárd Pocstár <admdh.com@gmail.com>",
   "description": "Component Driven Static Website Development Tool",
   "host": "adm-dev-kit",
@@ -77,7 +77,6 @@
     "run-sequence": "^1.2.1",
     "serve-favicon": "^2.3.0",
     "stylelint": "^6.5.1",
-    "stylelint-config-adm-dev-kit": "^1.0.1",
-    "yargs": "^4.7.1"
+    "stylelint-config-adm-dev-kit": "^1.0.1"
   }
 }
