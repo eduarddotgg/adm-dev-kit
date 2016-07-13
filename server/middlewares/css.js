@@ -11,29 +11,29 @@ const reporter          = require('postcss-reporter');
 const cssInject         = require('postcss-inject');
 
 
-const postcssPlugins = [
-	stylelint({
-		configFile: './.stylelintrc'
-	}),
-	reporter({
-		clearMessages: true
-	}),
-	cssInject({
-		injectTo: '',
-		cssFilePath: './src/_css-variables.css'
-	}),
-	mscale,
-	vars,
-	nested,
-	minmax,
-	customMedia,
-	grid({
-		separator: '--'
-	}),
-	autoprefixer
-];
+module.exports = (server, path, src, cssVars) => {
+	const postcssPlugins = [
+		stylelint({
+			configFile: './.stylelintrc'
+		}),
+		reporter({
+			clearMessages: true
+		}),
+		cssInject({
+			injectTo: '',
+			cssFilePath: cssVars
+		}),
+		mscale,
+		vars,
+		nested,
+		minmax,
+		customMedia,
+		grid({
+			separator: '--'
+		}),
+		autoprefixer
+	];
 
-module.exports = (server, path, src) => {
 	server.use('/*.css', postcssMiddleware({
 		src: (req) => {
 			return path.join(src, req.originalUrl);

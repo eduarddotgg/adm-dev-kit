@@ -28,14 +28,15 @@ exports.server = (opts) => {
 		openURL: 'adm-dev-kit',
 		name: pjson.name,
 		desc: pjson.description,
-		version: pjson.version
+		version: pjson.version,
+		cssVariables: './src/_css-variables.css'
 	}, opts);
 
 	serverIP(server, opts.port);
 	serverVIEWS(server, express, path, opts.src, opts.views);
 	serverHTML(server);
 	serverJS(server, fs, path, opts.src);
-	serverCSS(server, path, opts.src);
+	serverCSS(server, path, opts.src, opts.cssVariables);
 	serverIMG(server, fs, path, opts.src);
 	serverROUTES(server);
 	serverLISTEN(server,
