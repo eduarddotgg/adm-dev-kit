@@ -53,11 +53,12 @@ exports.server = (opts) => {
 exports.build = (opts) => {
 	opts = assign({
 		src: 'src',
-		dest: 'dest'
+		dest: 'dest',
+		cssVariables: './src/_css-variables.css'
 	}, opts);
 
 	function loadTask(task) {
-		return require('./build/' + task)(gulp, $, opts.src, opts.dest);
+		return require('./build/' + task)(gulp, $, opts.src, opts.dest, opts.cssVariables);
 	}
 
 	gulp.task('components', loadTask('components'));

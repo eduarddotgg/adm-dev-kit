@@ -23,33 +23,33 @@ var csso 			 = require('postcss-csso');
 var cssInject		 = require('postcss-inject');
 
 
-var processors = [
-	postcssImport,
-	cssInject({
-		injectTo: '',
-		cssFilePath: 'src/_css-variables.css'
-	}),
-	minmax,
-	customMedia,
-	nested,
-	mscale,
-	cssvariables,
-	grid({ separator: '--' }),
-	rebaser({
-		assetsPath: '../img',
-		relative: true
-	}),
-	font
-];
+module.exports = function (gulp, plugins, src, dest, cssVars) {
+	var processors = [
+		postcssImport,
+		cssInject({
+			injectTo: '',
+			cssFilePath: cssVars
+		}),
+		minmax,
+		customMedia,
+		nested,
+		mscale,
+		cssvariables,
+		grid({ separator: '--' }),
+		rebaser({
+			assetsPath: '../img',
+			relative: true
+		}),
+		font
+	];
 
-var postProcess = [
-	autoprefixer,
-	customProperties,
-	query({ sort: true }),
-	csso
-];
+	var postProcess = [
+		autoprefixer,
+		customProperties,
+		query({ sort: true }),
+		csso
+	];
 
-module.exports = function (gulp, plugins, src, dest) {
 	return function () {
 		return gulp.src(src + '/*.pug')
 		.pipe(plugins.flatmap(function (stream, file) {
