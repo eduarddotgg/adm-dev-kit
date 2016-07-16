@@ -137,7 +137,4 @@ After you run build tasks everything included into main fails will be built in s
 		| - js
 			| - index.min.js
 index.html
-```  
-
-```index.pug``` file was compiled to ```index.html``` which has it’s own js file ```index.min.js``` and it’s own css file ```index.min.css```.  
-Important to know that into result css or js file will be only compiled that was included into main file like ```index.pug```. So if ```hello-world``` include will be removed from ```index.pug```, ```hello-world```’s css and js won’t be compiled. 
+```
