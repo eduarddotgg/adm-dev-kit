@@ -26,9 +26,9 @@ assets/
 	| - images
 index.html
 ```
-Pros:
-- …
-Cons:
+##### Pros:  
+I leave it empty. It's good for production only  
+##### Cons:
 Problem with this kind project structure is that it’s hard to maintain it, it’s hard to optimise it, etc, etc, etc. And I think mostly no-one develops projects in this way.
 
 ### Project with template engines, pre and post processors
@@ -52,9 +52,9 @@ assets/
 		| - component-2.pug
 index.pug // imports component-1.pug, component-2.pug
 ```
-Pros:
+##### Pros:
 This project structure is more complicated, but on the other hand it has some advantages like components with smaller files.
-Cons
+##### Cons:
 As project grows it gets harder to control built files. It’s especially turn into big problem when more than one developer works on one project. Often happens that some unused components still continue to be part of project. And to remove those components EJS, JS, CSS should be synced.
 
 ### SPA (single page application)
@@ -70,9 +70,9 @@ component-2/
 	| - component-2.js // includes component-2.pug, component-2.sass
 app.js // includes component-1, component-2
 ```
-Pros:
+##### Pros:
 SPA provides true component driven development. It’s really easy to maintain projects, reuse components, etc.
-Cons:
+##### Cons:
 The main problem with SPA is that it is single page application, this means that everything is bundled to js file.
 
 ### ADM DEV KIT
@@ -115,9 +115,8 @@ As you can see ```hello-world.pug``` includes it’s CSS and JS files.
 //hello-world.js
 console.log('Hello, World!')
 ```
-
-```hello-world.css```
-```
+```css
+// hello-world.css
 .hello-world {
 	display: block;
 	left: 50%;
