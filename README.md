@@ -65,6 +65,3 @@ app.build({
     dest: './dest'      // build directory
 });
 ```
-
-## ADM DEV KIT INIT PROJECT
- 
