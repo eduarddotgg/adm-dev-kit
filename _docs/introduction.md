@@ -116,7 +116,7 @@ As you can see ```hello-world.pug``` includes it’s CSS and JS files.
 console.log('Hello, World!')
 ```
 ```css
-// hello-world.css
+/* hello-world.css */
 .hello-world {
 	display: block;
 	left: 50%;
