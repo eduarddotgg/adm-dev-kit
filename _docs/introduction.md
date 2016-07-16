@@ -9,7 +9,7 @@ There are many ways how to develop in component driven way. There are also a lot
 ## Main Idea
 Main idea is to provide component driven development with components that are separated from each other and at the same time generate normal, non SPA (single page application), website with it’s HTML, JS and CSS. Let’s take a look at some example for better understanding. 
 
-## Example
+## Examples
 ### Vanila Project
 First of all let’s look on usual some website project file structure. As a usual it can be separated it on few parts:
 - html
@@ -138,5 +138,5 @@ After you run build tasks everything included into main fails will be built in s
 			| - index.min.js
 index.html
 ```
-```index.pug``` file was compiled to ```index.html``` which has it’s own js file ```index.min.js``` and it’s own css file ```index.min.css```.
+```index.pug``` file was compiled to ```index.html``` which has it’s own js file ```index.min.js``` and it’s own css file ```index.min.css```.  
 Important to know that into result css or js file will be only compiled that was included into main file like ```index.pug```. So if ```hello-world``` include will be removed from ```index.pug```, ```hello-world```’s css and js won’t be compiled. 
