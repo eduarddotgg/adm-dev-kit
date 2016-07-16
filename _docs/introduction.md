@@ -87,9 +87,9 @@ index/
 		| - hello-world.css
 index.pug
 ```
-
-```index.pug```:
-```
+  
+```jade
+// index.pug
 extends _layouts/_main.pug
 block title
 	title ADM DEV KIT
@@ -100,9 +100,9 @@ block content
 
 	include index/hello-world/_hello-world
 ```
-
-```hello-world.pug```
-```
+   
+``` jade
+// hello-world.pug
 link(href='index/hello-world/_hello-world.css' type='text/css' rel='stylesheet')
 .hello-world
 	h1 Hello, World!
@@ -110,9 +110,9 @@ link(href='index/hello-world/_hello-world.css' type='text/css' rel='stylesheet')
 script System.import('index/hello-world/_hello-world.js')
 ```
 As you can see ```hello-world.pug``` includes it’s CSS and JS files.
-
-```hello-world.js```
-```
+   
+```jss
+//hello-world.js
 console.log('Hello, World!')
 ```
 
@@ -138,3 +138,5 @@ After you run build tasks everything included into main fails will be built in s
 			| - index.min.js
 index.html
 ```
+```index.pug``` file was compiled to ```index.html``` which has it’s own js file ```index.min.js``` and it’s own css file ```index.min.css```.  
+Important to know that into result css or js file will be only compiled that was included into main file like ```index.pug```. So if ```hello-world``` include will be removed from ```index.pug```, ```hello-world```’s css and js won’t be compiled. 
