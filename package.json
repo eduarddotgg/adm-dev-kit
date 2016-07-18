@@ -76,7 +76,7 @@
     "pug": "^2.0.0-alpha8",
     "run-sequence": "^1.2.1",
     "serve-favicon": "^2.3.0",
-    "stylelint": "^7.0.2",
+    "stylelint": "^7.0.3",
     "stylelint-config-adm-dev-kit": "^1.0.1"
   }
 }
