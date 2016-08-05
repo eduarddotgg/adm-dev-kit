@@ -1,7 +1,5 @@
 const express 		= require('express');
 const server 		= express();
-const path 			= require('path');
-const fs 			= require('fs');
 const myip 			= require('my-ip');
 const open 			= require('open');
 const assign		= require('object-assign');
@@ -10,14 +8,14 @@ const gulp			= require('gulp');
 const $				= require('gulp-load-plugins')();
 
 const pjson 		= require('./package.json');
-const serverIP 		= require('./server/ip/ip');
-const serverVIEWS 	= require('./server/views/views');
-const serverROUTES 	= require('./server/routes/routes');
-const serverHTML 	= require('./server/middlewares/html');
-const serverJS 		= require('./server/middlewares/javascript');
-const serverCSS 	= require('./server/middlewares/css');
-const serverIMG 	= require('./server/middlewares/images');
-const serverLISTEN 	= require('./server/listen/listen');
+const serverIP 		= require('./app/server/ip/ip');
+const serverVIEWS 	= require('./app/server/views/views');
+const serverROUTES 	= require('./app/server/routes/routes');
+const serverHTML 	= require('./app/server/middlewares/html');
+const serverJS 		= require('./app/server/middlewares/javascript');
+const serverCSS 	= require('./app/server/middlewares/css');
+const serverIMG 	= require('./app/server/middlewares/images');
+const serverLISTEN 	= require('./app/server/listen/listen');
 
 exports.server = (opts) => {
 	opts = assign({
@@ -33,11 +31,11 @@ exports.server = (opts) => {
 	}, opts);
 
 	serverIP(server, opts.port);
-	serverVIEWS(server, express, path, opts.src, opts.views);
+	serverVIEWS(server, express, opts.src, opts.views);
 	serverHTML(server);
-	serverJS(server, fs, path, opts.src);
-	serverCSS(server, path, opts.src, opts.cssVariables);
-	serverIMG(server, fs, path, opts.src);
+	serverJS(server, opts.src);
+	serverCSS(server, opts.src, opts.cssVariables);
+	serverIMG(server, opts.src);
 	serverROUTES(server);
 	serverLISTEN(server,
 		opts.host,
@@ -58,7 +56,8 @@ exports.build = (opts) => {
 	}, opts);
 
 	function loadTask(task) {
-		return require('./build/' + task)(gulp, $, opts.src, opts.dest, opts.cssVariables);
+		return require('./app/build/' +
+			task)(gulp, $, opts.src, opts.dest, opts.cssVariables);
 	}
 
 	gulp.task('components', loadTask('components'));

@@ -23,8 +23,7 @@ Main idea is to give ability to develop in component driven way without React, W
 
 ## Documentation
 - [Introduction](https://github.com/admdh/adm-dev-kit/blob/2.5.0/_docs/introduction.md) 
-- Installation (coming soon)
-- Configuration (coming soon)
+- Installation and Configuration (coming soon)
 - Getting started (coming soon)
 - Examples (coming soon)
 
