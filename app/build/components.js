@@ -27,6 +27,9 @@ module.exports = (gulp, plugins, src, dest, cssVars) => {
 
 			.pipe(plugins.pug())
 
+			.pipe(plugins.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
+			.pipe(plugins.replace(/<script>(.+?)<\/script>/g, ''))
+
 			.pipe(plugins.resources())
 
 			.pipe(plugins.if('**/*.css', plugins.postcss(
@@ -42,7 +45,6 @@ module.exports = (gulp, plugins, src, dest, cssVars) => {
 
 
 			.pipe(plugins.replace(/<link href[^>]+?[ ]*>/g, ''))
-			.pipe(plugins.replace(/<script src[^>]+?[ ]*><\/[^>]+?[ ]*>/g, ''))
 			.pipe(htmlreplace({
 				css: cssFilePath + cssFileName,
 				js: jsFilePath + jsFileName
