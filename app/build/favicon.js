@@ -1,5 +1,5 @@
-module.exports = function (gulp, plugins, src, dest) {
-	return function () {
+module.exports = (gulp, plugins, src, dest) => {
+	return () => {
 		return gulp.src(src + '/favicon.ico')
 			.pipe(gulp.dest(dest));
 	};

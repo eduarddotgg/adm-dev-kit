@@ -1,14 +1,17 @@
-var pngquant		 = require('imagemin-pngquant');
-var assetsFolder	 = 'assets/';
-var imgFolder		 = '/' + assetsFolder + 'img/';
+const pngquant = require('imagemin-pngquant');
+const assetsFolder = 'assets/';
+const imgFolder	= '/' + assetsFolder + 'img/';
 
-module.exports = function (gulp, plugins, src, dest) {
-	return function () {
-		return gulp.src([src + '/**/*.jpg',
+module.exports = (gulp, plugins, src, dest) => {
+	return () => {
+		return gulp.src([
+			src + '/**/*.jpg',
 			src + '/**/*.jpeg',
 			src + '/**/*.png',
 			src + '/**/*.svg',
-			src + '/**/*.gif'])
+			src + '/**/*.gif',
+			'!' + src + '/__jspm-packages/**/*'
+		])
 			.pipe(plugins.imagemin({
 				progressive: true,
 				svgoPlugins: [{ removeViewBox: false }],

@@ -32,7 +32,7 @@ exports.server = (opts) => {
 
 	serverIP(server, opts.port);
 	serverVIEWS(server, express, opts.src, opts.views);
-	serverHTML(server);
+	serverHTML(server, opts.src);
 	serverJS(server, opts.src);
 	serverCSS(server, opts.src, opts.cssVariables);
 	serverIMG(server, opts.src);

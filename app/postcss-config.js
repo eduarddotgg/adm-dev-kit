@@ -44,11 +44,11 @@ exports.dev = (cssVars) => {
 
 exports.build = () => {
 	const postProcess = [
-		font,
 		rebaser({
 			assetsPath: '../img',
 			relative: true
 		}),
+		font,
 		customProperties,
 		query({ sort: true }),
 		csso
