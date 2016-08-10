@@ -102,7 +102,7 @@ To add CSS just use ```link``` tag:
 link(href="hello-world.css" type="text/css" rel="stylesheet")
 p.hello-world Hello, World!
 ```
-Important to know path in ```href``` should be relative to project's main page:
+Important to know path in ```href``` should be relative to ```src/``` folder:
 ```
 src/
     |- index
