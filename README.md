@@ -44,7 +44,7 @@ adm-dev-kit-project-example/
 	|- server.js
 ```
 
-##### Create server file:
+#### Create server file:
 ```js
 //server.js
 const app = require('adm-dev-kit');
@@ -55,7 +55,7 @@ app.server({
 });
 ```
 
-##### Create build file: 
+#### Create build file: 
 ```js
 //gulpfile.js
 const app = require('adm-dev-kit');
@@ -120,14 +120,14 @@ hello-world.pug:
 link(href="index/hello-world/hello-world/hello-world.css" type="text/css" rel="stylesheet")
 ```
 
-### Running Server
+#### Running Server
 To run server use:
 ```
 npm start
 ```
 After server has started jspm file will be generated automatically to ```src/``` folder. Don’t delete this file, it is required for the build.
 
-### Build
+#### Build
 To build project just run:
 ```
 gulp
