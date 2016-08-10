@@ -1,31 +1,34 @@
 <img title="Dev Kit" src="http://adm-designhouse.com/adm-dev-kit-logo.svg">  
 # ADM DEV KIT 2.5.0
-[![Join the chat at https://gitter.im/admdh/adm-dev-kit](https://badges.gitter.im/admdh/adm-dev-kit.svg)](https://gitter.im/admdh/adm-dev-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  
+Today component driven development is getting more and more popular. Components help us to make our projects more structurized, easy to maintain and much more.
+There are a lot of methodologies and frameworks that help to structurize projects in component way.
 
-#### What is ADM DEV KIT?
-ADM DEV KIT is component driven static websited development tool. It is built with Node.js, Express.js, Gulp.js, Pug.js, PostHTML, PostCSS and other smaller tools. ADM DEV KIT include pre configured development environment and build tasks to make development and deployment easier.  
-Main idea is to give ability to develop in component driven way without React, Webpack or similar tools.
- 
+ADM DEV KIT is set of tools and plugins that give you ability to develop in component driven way. 
+ADM DEV KIT provides development and build environment as well.
 
-#### Features
-- Component driven development with independent components;
-- Development and build environment;
-- Project Init Tool [ADM DEV KIT INIT PROJECT](https://github.com/admdh/adm-dev-kit-init-project)
-- PostHTML for validation to w3c standards;
-- JSPM for third party libraries;
-- ESlint;
-- CSS future syntax and future features with PostCSS;
-- Stylelint;
-- Precommit git hook for linting before commit;
-- Common CSS for normalization default html tags out of box;
-- MY-IP-UI helps to open project on other devices;
-- and much more...
 
 ## Documentation
-- [Introduction](https://github.com/admdh/adm-dev-kit/blob/2.5.0/_docs/introduction.md) 
+- [Introduction](https://github.com/admdh/adm-dev-kit/blob/2.5.0/_docs/introduction.md)
+- How Does It Work? (coming soon)
 - Installation and Configuration (coming soon)
 - Getting started (coming soon)
 - Examples (coming soon)
+
+
+## Features
+- Component driven development with independent components;
+- Development and build environment;
+- Project Init Tool [ADM DEV KIT INIT PROJECT](https://github.com/admdh/adm-dev-kit-init-project) - initialise project with ease;
+- PostHtml;
+- PostCSS - use future css today;
+- JSPM - install third party libraries, bundle JS;
+- EsLint - check your JS code;
+- StyleLint - check you CSS code;
+- Pre-commit;
+- Default CSS;
+- MY-IP-UI - helps to open project on other devices;
+- and much more 
+
 
 ## Quick start
 
