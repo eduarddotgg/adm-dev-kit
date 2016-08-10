@@ -19,13 +19,13 @@ ADM DEV KIT tries to solve these problems. ADM DEV KIT’s main goal is to give 
 - MY-IP-UI - helps to open project on other devices;
 - and much more…
 
-## Documentation
+## DOCUMENTATION
 - [Introduction](https://github.com/admdh/adm-dev-kit/blob/2.5.0/_docs/introduction.md)
 - Server and Build
 - Project Source
 - Examples (coming soon)
 
-## Quick Start
+## QUICK START
 
 ### Manual Project Setup
 In project’s folder run command:
