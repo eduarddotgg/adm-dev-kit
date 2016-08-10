@@ -3,7 +3,7 @@
 Today component driven development is getting more and more popular. Components help us to make our projects more structurized, easy to maintain and much more.
 There are a lot of methodologies and frameworks that help to structurize projects in component way.
 
-ADM DEV KIT is set of tools and plugins that give you ability to develop in component driven way. 
+ADM DEV KIT is set of tools and plugins that give you ability to develop in component driven way, compiling HTML, JS and CSS separatly. 
 ADM DEV KIT provides development and build environment as well.
 
 
