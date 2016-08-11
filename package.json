@@ -1,6 +1,6 @@
 {
   "name": "adm-dev-kit",
-  "version": "2.5.12",
+  "version": "2.5.2",
   "author": "Eduárd Pocstár <admdh.com@gmail.com>",
   "description": "Component Driven Static Website Development Tool",
   "license": "MIT",
@@ -48,6 +48,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-resources": "^0.3.0",
     "imagemin-pngquant": "^5.0.0",
+    "jstransformer-markdown": "^1.1.0",
     "my-ip-ui": "^1.0.7",
     "open": "0.0.5",
     "path": "^0.12.7",
