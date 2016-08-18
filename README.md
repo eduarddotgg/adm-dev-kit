@@ -12,6 +12,7 @@ ADM DEV KIT tries to solve these problems. ADM DEV KIT’s main goal is to give 
 - PostHtml;
 - PostCSS - use future css today;
 - JSPM - install third party libraries, bundle JS;
+- Browser-Sync - automatically reload browser on file changes;
 - EsLint - check your JS code;
 - StyleLint - check you CSS code;
 - Pre-commit;

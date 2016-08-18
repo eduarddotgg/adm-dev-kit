@@ -1,32 +1,34 @@
-const express 		= require('express');
-const server 		= express();
-const myip 			= require('my-ip');
-const open 			= require('open');
-const assign		= require('object-assign');
+const express = require('express');
+const server = express();
+const myip = require('my-ip');
+const open = require('open');
+const assign = require('object-assign');
 
-const gulp			= require('gulp');
-const $				= require('gulp-load-plugins')();
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
 
-const pjson 		= require('./package.json');
-const serverIP 		= require('./app/server/ip/ip');
-const serverVIEWS 	= require('./app/server/views/views');
-const serverROUTES 	= require('./app/server/routes/routes');
-const serverHTML 	= require('./app/server/middlewares/html');
-const serverJS 		= require('./app/server/middlewares/javascript');
-const serverCSS 	= require('./app/server/middlewares/css');
-const serverIMG 	= require('./app/server/middlewares/images');
-const serverLISTEN 	= require('./app/server/listen/listen');
+const pjson = require('./package.json');
+const serverIP = require('./app/server/ip/ip');
+const serverVIEWS = require('./app/server/views/views');
+const serverROUTES = require('./app/server/routes/routes');
+const serverHTML = require('./app/server/middlewares/html');
+const serverJS = require('./app/server/middlewares/javascript');
+const serverCSS = require('./app/server/middlewares/css');
+const serverIMG = require('./app/server/middlewares/images');
+const serverLISTEN = require('./app/server/http-server/listen');
+const serverBrowserSync = require('./app/server/http-server/browser-sync');
 
 exports.server = (opts) => {
 	opts = assign({
 		src: './src',
 		views: './views',
-		host: 'adm-dev-kit',
+		host: 'localhost',
 		port: '3000',
-		openURL: 'adm-dev-kit',
+		openURL: 'localhost',
 		name: pjson.name,
 		desc: pjson.description,
 		version: pjson.version,
+		browserSync: true,
 		cssVariables: './src/_css-variables.css'
 	}, opts);
 
@@ -46,6 +48,9 @@ exports.server = (opts) => {
 		opts.name,
 		opts.desc,
 		opts.version);
+	if (opts.browserSync) {
+		serverBrowserSync(opts.host, opts.port, opts.src, opts.name);
+	}
 };
 
 exports.build = (opts) => {

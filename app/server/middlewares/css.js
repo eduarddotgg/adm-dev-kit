@@ -12,4 +12,16 @@ module.exports = (server, src, cssVars) => {
 			map: { inline: true }
 		}
 	}));
+
+	server.use('/*.css*', postcssMiddleware({
+		src: (req) => {
+			const originalPath = req.originalUrl;
+			const newPath = originalPath.replace(/\?(.*)/g, '');
+			return path.join(src, newPath);
+		},
+		plugins: postcssConfig.dev(cssVars),
+		options: {
+			map: { inline: true }
+		}
+	}));
 };
