@@ -28,7 +28,6 @@ exports.server = (opts) => {
 		name: pjson.name,
 		desc: pjson.description,
 		version: pjson.version,
-		browserSync: true,
 		cssVariables: './src/_css-variables.css'
 	}, opts);
 
@@ -48,9 +47,7 @@ exports.server = (opts) => {
 		opts.name,
 		opts.desc,
 		opts.version);
-	if (opts.browserSync) {
-		serverBrowserSync(opts.host, opts.port, opts.src, opts.name);
-	}
+	serverBrowserSync(opts.host, opts.port, opts.src, opts.name);
 };
 
 exports.build = (opts) => {

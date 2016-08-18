@@ -6,7 +6,7 @@ module.exports = (server, src) => {
 	server.engine('pug', (path, options, callback) => {
 
 		const fileName = path.match(/[^/]+$/g);
-		const jspmFileName = fileName[0].replace('.pug', '.jspm.js');
+		const jspmFileName = fileName[0].replace('.pug', '.jspm');
 
 		const plugins = [
 			posthtmlW3C(),
