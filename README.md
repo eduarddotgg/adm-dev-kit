@@ -1,3 +1,4 @@
+<img title="Dev Kit" src="http://adm-designhouse.com/adm-dev-kit-logo.svg">  
 # ADM DEV KIT
 Today component driven development is getting more and more popular. Components help us to make our projects more organised, easy to maintain and much more. There are a lot of  methodologies and frameworks that help us to develop in component driven way. But the problem is that some of them have files with tones of imports, some compile everything into one JS file.
 
