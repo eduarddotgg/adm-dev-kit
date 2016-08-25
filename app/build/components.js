@@ -33,7 +33,7 @@ module.exports = (gulp, plugins, src, dest, cssVars) => {
 			.pipe(plugins.resources())
 
 			.pipe(plugins.if('**/*.css', plugins.postcss(
-				postcssConfig.dev(cssVars),
+				postcssConfig.buildPre(cssVars),
 				{ to: './dest/assets/css/*.css' }
 			)))
 
@@ -41,7 +41,7 @@ module.exports = (gulp, plugins, src, dest, cssVars) => {
 				plugins.concat(cssFolder + cssFileName)))
 
 			.pipe(plugins.if('assets/css/**/*.css',
-				plugins.postcss(postcssConfig.build())))
+				plugins.postcss(postcssConfig.buildPost())))
 
 
 			.pipe(plugins.replace(/<link href[^>]+?[ ]*>/g, ''))

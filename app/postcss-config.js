@@ -42,12 +42,38 @@ exports.dev = (cssVars) => {
 	return postcssPlugins;
 };
 
-exports.build = () => {
-	const postProcess = [
+exports.buildPre = (cssVars) => {
+	const postcssPlugins = [
+		stylelint({
+			configFile: './.stylelintrc'
+		}),
+		reporter({
+			clearMessages: true
+		}),
+		cssInject({
+			injectTo: '',
+			cssFilePath: cssVars
+		}),
+		postcssImport,
+		mscale,
+		lh,
+		vars,
+		nested,
+		minmax,
+		customMedia,
+		grid({ separator: '--' }),
+		autoprefixer,
 		rebaser({
 			assetsPath: '../img',
 			relative: true
-		}),
+		})
+	];
+
+	return postcssPlugins;
+};
+
+exports.buildPost = () => {
+	const postProcess = [
 		font,
 		customProperties,
 		query({ sort: true }),
