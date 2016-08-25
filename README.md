@@ -7,7 +7,7 @@ ADM-DEV-KIT is static web server and build tool built with plugins and tools lik
 - No need to use HTML or CSS inside JS for components;
 - HTML, JS, CSS is compiled separately;
 - Development and build environment;
-- Project Init Tool [ADM DEV KIT INIT PROJECT](https://github.com/admdh/adm-dev-kit-init-project) - initialise project with ease;
+- Project Init Tool [ADM DEV KIT INIT PROJECT](https://github.com/iamfrntdv/adm-dev-kit-init-project) - initialise project with ease;
 - PostHtml;
 - PostCSS - use future css today;
 - JSPM - install third party libraries, bundle JS;
@@ -20,7 +20,7 @@ ADM-DEV-KIT is static web server and build tool built with plugins and tools lik
 - and much more…
 
 ## DOCUMENTATION
-- [Introduction](https://github.com/admdh/adm-dev-kit/blob/2.5.0/_docs/introduction.md)
+- [Introduction](https://github.com/iamfrntdv/adm-dev-kit/blob/2.5.0/_docs/introduction.md)
 - Server and Build
 - Project Source
 - Examples (coming soon)
@@ -136,8 +136,8 @@ Gulp will build everything automatically, no worry!
 
 
 ### Setting up project using ADM DEV KIT INIT PROJECT
-Initialise your project in few simple steps using [ADM DEV KIT INIT PROJECT](https://github.com/admdh/adm-dev-kit-init-project). You can create project automatically or proceed through question form to get
+Initialise your project in few simple steps using [ADM DEV KIT INIT PROJECT](https://github.com/iamfrntdv/adm-dev-kit-init-project). You can create project automatically or proceed through question form to get
 ##### Automatically:
-![ADM DEV KIT INIT AUTOMATICALLY](https://raw.githubusercontent.com/admdh/adm-dev-kit-init-project/master/images/adm-dev-kit-auto-project-init.gif)
+![ADM DEV KIT INIT AUTOMATICALLY](https://raw.githubusercontent.com/iamfrntdv/adm-dev-kit-init-project/master/images/adm-dev-kit-auto-project-init.gif)
 ##### Manual:
-![ADM DEV KIT INIT MANUALLY](https://raw.githubusercontent.com/admdh/adm-dev-kit-init-project/master/images/adm-dev-kit-manual-project-init.gif)
+![ADM DEV KIT INIT MANUALLY](https://raw.githubusercontent.com/iamfrntdv/adm-dev-kit-init-project/master/images/adm-dev-kit-manual-project-init.gif)
