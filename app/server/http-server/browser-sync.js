@@ -6,7 +6,7 @@ module.exports = (host, port, src, name) => {
 		files: [
 			src + '/**/*.pug',
 			'!' + src + '/**/*.jspm.js',
-			src + '/**/*.js',
+			src + '/*/**/*.js',
 			src + '/**/*.css'
 		],
 		logPrefix: name,
