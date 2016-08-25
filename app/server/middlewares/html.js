@@ -11,7 +11,6 @@ module.exports = (server, src) => {
 		const plugins = [
 			posthtmlW3C(),
 			jspmConfig({
-				pathToSource: '',
 				outputPath: src + '/_' + jspmFileName
 			})
 		];
