@@ -1,7 +1,6 @@
+<img title="Dev Kit" src="http://adm-designhouse.com/adm-dev-kit-logo.svg">  
 # ADM DEV KIT
-Today component driven development is getting more and more popular. Components help us to make our projects more organised, easy to maintain and much more. There are a lot of  methodologies and frameworks that help us to develop in component driven way. But the problem is that some of them have files with tones of imports, some compile everything into one JS file.
-
-ADM DEV KIT tries to solve these problems. ADM DEV KIT’s main goal is to give ability to develop in component driven way without tones of files with tones of imports, so the project could be always good organised, and to compile everything separately.
+ADM-DEV-KIT is static web server and build tool built with plugins and tools like Node.js, JSPM, Express.js, Browser-Sync, Gulp.js, PostHTML, PostCSS and others. Main goal of ADM-DEV-KIT is to give ability to develop in component driven way. It is also focused on web standards and optimisation.
 
 ## FEATURES
 - Component driven development with independent components;
