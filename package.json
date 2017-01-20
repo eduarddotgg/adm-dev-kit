@@ -47,7 +47,7 @@
     "gulp-pug": "^3.0.4",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "gulp-resources": "^0.3.0",
+    "gulp-resources": "^0.5.0",
     "imagemin-pngquant": "^5.0.0",
     "jstransformer-markdown": "^1.1.0",
     "my-ip-ui": "^1.0.7",
