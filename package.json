@@ -71,7 +71,7 @@
     "posthtml-jspm-config-generator": "^1.0.5",
     "posthtml-w3c": "^0.8.1",
     "pre-commit": "^1.1.3",
-    "pug": "^2.0.0-beta10",
+    "pug": "^2.0.0-beta11",
     "serve-favicon": "^2.3.0",
     "stylelint": "^7.1.0",
     "stylelint-config-adm-dev-kit": "^1.0.2"
